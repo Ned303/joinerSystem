@@ -11,4 +11,10 @@ class Application {
 
 		return $objConfig['email'];
 	}
+
+	public function getDBDetails(){
+		$objConfig = Factory::fromFiles(glob('config.ini'));
+
+		return $objConfig['database'];
+	}
 }
