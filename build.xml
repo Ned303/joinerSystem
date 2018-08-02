@@ -1,0 +1,37 @@
+<project name="ACCR build system" basedir="./" default="deploy-all">
+
+    <property name="buildprops" value="test.properties" />
+
+    <property file="${buildprops}"></property>
+    <property name="project.dir" value="${basedir}" />
+
+    <filterset id="buildFilters">
+        <filtersfile file="${buildprops}" />
+    </filterset>
+
+    <target name="init" description="Initializes Joiner System build system">
+        <sequential>
+            <echo level="info">
+                Initializing Joiner System Build...
+            </echo>
+
+            <mkdir dir="${build.dir}" />
+            <mkdir dir="${dist.dir}" />
+        </sequential>
+    </target>
+
+    <target name="deploy-all">
+        <echo level="info">
+            Deploying filtered Joiner System files to ${deploy.dir}
+        </echo>
+        <sequential>
+            <copy todir="${deploy.dir}/${deploy.distribution.dir}" verbose="${deploy.verbose}" granularity="0" preservelastmodified="true" overwrite="true" >
+                <fileset dir="${src.dir}" >
+                    <include name="**/" />
+                </fileset>
+                <filterset refid="buildFilters" />
+            </copy>
+        </sequential>
+    </target>
+
+</project>
