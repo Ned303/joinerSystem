@@ -1,8 +1,11 @@
 <?php
-	require 'models/Email.php';
-	require 'models/Database.php';
+	require 'models/User.php';
 
-	$objDB = new Database();
+	echo file_get_contents('views/login.html');
 
-
+	if(isset($_POST["login"]))
+	{
+		$objUser = new User();
+		$objUser->login($_POST["username"], hash('sha512',$_POST["password"]));
+	}
 ?>
