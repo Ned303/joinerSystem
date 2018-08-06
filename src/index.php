@@ -8,4 +8,9 @@
 		$objUser = new User();
 		$objUser->login($_POST["username"], hash('sha512',$_POST["password"]));
 	}
+
+	if(isset($_POST["forgot"]))
+	{
+		echo "DONT FORGET YOUR PASSWORD AGAIN!!!!";
+	}
 ?>

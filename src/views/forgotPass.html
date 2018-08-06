@@ -7,10 +7,7 @@
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
         form {
-            border: 3px solid #f1f1f1;
-            width: 30%;
-            margin: auto;
-            border-radius: 25px;
+
         }
 
         input[type=text], input[type=password] {
@@ -37,7 +34,11 @@
         }
 
         .container {
-            padding: 16px;
+            padding:16px;
+            border-radius: 25px;
+            border: 3px solid #f1f1f1;
+            width: 30%;
+            margin: auto;
             border-radius: 25px;
         }
 
@@ -65,22 +66,16 @@
 <br>
 
 <!--Following load the for-->
-<form action="index.php" method="POST">
-    <div class="container">
-        <h4><b>Username</b></h4>
-        <input type="text" placeholder="Username" name="username" required>
+<div class="container">
+    <form action="../index.php" method="POST">
+            <h4><b>Email</b></h4>
+            <input type="text" placeholder="Email" name="email" required>
 
-        <h4><b>Password</b></h4>
-        <input type="password" placeholder="Password" name="password" required>
-
-        <button type="submit" name="login">Login</button>
-        <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
-        </label>
-    </div>
-    <div class="container" style="background-color:#f1f1f1">
-        <div>Forgot <a href="views/forgotPass.html">password?</a></div>
-    </div>
-</form>
+            <button type="submit" name="forgot">Submit</button>
+    </form>
+    <form action="../index.php" method="POST" style="border:0px;">
+            <button type="submit" name="cancel">Cancel</button>
+    </form>
+</div>
 </body>
 </html>
