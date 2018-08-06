@@ -14,12 +14,12 @@ class Database {
 
 		$objAdapter = new Zend\Db\Adapter\Adapter($arrConDetails);
 
-		$statement = $objAdapter->query('select * from users');
+		/*$statement = $objAdapter->query('select * from users');
 		$result = $statement->execute();
 		$row = $result->current();
 		var_dump($row);
 		$result->next();
 		$row = $result->current();
-		var_dump($row);
+		var_dump($row);*/
 	}
 }

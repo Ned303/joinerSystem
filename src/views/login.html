@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {font-family: Arial, Helvetica, sans-serif;}
+        form {
+            border: 3px solid #f1f1f1;
+            width: 30%;
+            margin: auto;
+            border-radius: 25px;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #0065A4;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            padding: 16px;
+            border-radius: 25px;
+        }
+
+        .header-container {
+            width: 100%;
+            height: 100px;
+            background-color: #0065A4;
+        }
+
+        .load-logo {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+        }
+
+        img {
+            height: 100px;
+            padding-left: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<!-- following div loads the image-->
+<div class="load-logo">
+    <a href="http://a24group.com/" title="a24 Group">
+        <img src="./logo.PNG" alt="A24 Group">
+    </a>
+</div>
+<br>
+<br>
+
+<!--Following load the for-->
+<form action="index.php" method="POST">
+    <div class="container">
+        <h4><b>Username</b></h4>
+        <input type="text" placeholder="Username" name="username" required>
+
+        <h4><b>Password</b></h4>
+        <input type="password" placeholder="Password" name="password" required>
+
+        <button type="submit">Login</button>
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+        <div>Forgot <a href="#">password?</a></div>
+    </div>
+</form>
+</body>
+</html>
