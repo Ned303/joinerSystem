@@ -14,7 +14,7 @@
 				"header header header"
 				"nav article article";
 			grid-template-rows: 206px 1fr;
-			grid-template-columns: 300px 1fr 15%;
+			grid-template-columns: 200px 1fr 15%;
 			height: 100vh;
 			margin: 0;
 			font-family: Arial, Helvetica, sans-serif;
@@ -22,9 +22,7 @@
 		#pageHeader {
 			grid-area: header;
 		}
-		#pageFooter {
-			grid-area: footer;
-		}
+
 		#mainArticle {
 			grid-area: article;
 		}
@@ -36,6 +34,36 @@
 		article, nav {
 			background: gold;
 		}
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #0065A4;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+
+        li a.active {
+            background-color: white;
+            color: black;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+
+        div a {
+            background-color: transparent;
+            color: white;
+        }
 	</style>
 </head>
 <body>
@@ -53,17 +81,19 @@
 				Welcome <?php echo $_SESSION['username']; ?>
 			</div>
 			<div>
-				Logout
+				<a href="">Logout</a> 
 			</div>
 		</div>
 	</header>
-	<article id="mainArticle">Article</article>
+	<article id="mainArticle">
+        Article
+    </article>
 	<nav id="mainNav">
-		<center>
-		<p>Admin</p>
-		<p>Joiner</p>
-		<p>Leaver</p>
-		<p>Mover</p>
-		</center>
+        <ul>
+            <li><a class="active" href="#home">Admin</a></li>
+            <li><a href="Joiners.html">Joiner</a></li>
+            <li><a href="Leavers.html">Leaver</a></li>
+            <li><a href="Movers.html">Mover</a></li>
+        </ul>
 	</nav>
 </body>
