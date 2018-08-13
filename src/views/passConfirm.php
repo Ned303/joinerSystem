@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
-    <title>Login</title>
+    <title>Joiner System</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -54,6 +54,21 @@
 			margin-right: auto;
         }
     </style>
+
+    <script>
+        function checkPass() {
+            if (document.getElementsByName('newPassword').values() ==
+                document.getElementsByName('confirmPassword').values()) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'Password matching';
+                document.getElementById("newPass").disabled = true;
+            } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'Password not matching';
+                document.getElementById("newPass").disabled = false;
+            }
+        }
+    </script>
 </head>
 <body>
 <!-- following div loads the image-->
@@ -69,11 +84,12 @@
             <input type="password" placeholder="New Password" name="newPassword" required>
             <br>
              <h4><b>Confirm Password</b></h4>
-            <input type="password" placeholder="Confirm Password" name="confirmPassword" required>
+            <input type="password" placeholder="Confirm Password" name="confirmPassword" onkeypress='checkPass()'; required>
             <input type="hidden" name="ref" value="<?php echo $_GET['ref']; ?>">
 
-            <button type="submit" name="newPass">Submit</button>
+            <button type="submit" name="newPass" disabled>Submit</button>
     </form>
+    <div> <p id="message"></p></div>
     <form action="../index.php" method="POST" style="border:0px;">
             <button type="submit" name="cancel">Cancel</button>
     </form>

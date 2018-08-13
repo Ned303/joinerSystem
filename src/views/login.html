@@ -7,10 +7,13 @@
     <style>
         body {font-family: Arial, Helvetica, sans-serif;}
         form {
-
+            border: 3px solid #f1f1f1;
+            width: 30%;
+            margin: auto;
+            border-radius: 25px;
         }
 
-        input[type=text], input[type=password], input[type=email] {
+        input[type=text], input[type=password] {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -34,11 +37,7 @@
         }
 
         .container {
-            padding:16px;
-            border-radius: 25px;
-            border: 3px solid #f1f1f1;
-            width: 30%;
-            margin: auto;
+            padding: 16px;
             border-radius: 25px;
         }
 
@@ -58,23 +57,26 @@
 </head>
 <body>
 <!-- following div loads the image-->
-<a href="http://a24group.com/" title="a24 Group">
+
     <img src="https://static1.squarespace.com/static/5149c458e4b0199d103d7411/t/5b682fb10e2e72aae8b968c9/1533554610971/logo.PNG?format=500w" alt="A24 Group">
-</a>
+
 <br>
 <br>
 
 <!--Following load the for-->
-<div class="container">
-    <form action="../index.php" method="POST">
-            <h4><b>Email</b></h4>
-            <input type="email" placeholder="Email" name="email" required>
+<form action="index.php" method="POST">
+    <div class="container">
+        <h4><b>Username</b></h4>
+        <input type="text" placeholder="Username" name="username" required>
 
-            <button type="submit" name="forgot">Submit</button>
-    </form>
-    <form action="../index.php" method="POST" style="border:0px;">
-            <button type="submit" name="cancel">Cancel</button>
-    </form>
-</div>
+        <h4><b>Password</b></h4>
+        <input type="password" placeholder="Password" name="password" required>
+
+        <button type="submit" name="login">Login</button>
+    </div>
+    <div class="container" style="background-color:#f1f1f1">
+        <div>Forgot <a href="views/forgotPass.html">password?</a></div>
+    </div>
+</form>
 </body>
 </html>
