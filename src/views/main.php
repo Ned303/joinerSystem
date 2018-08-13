@@ -19,20 +19,25 @@
 			margin: 0;
 			font-family: Arial, Helvetica, sans-serif;
 		}
-		#pageHeader {
+        
+        #pageHeader {
 			grid-area: header;
 		}
-
+        
+        #pageFooter {
+			grid-area: footer;
+		}
 		#mainArticle {
 			grid-area: article;
 		}
-		#mainNav {
+        
+        #mainNav {
 			grid-area: nav;
 			background:#0065A4;
 			color:white;
 		}
 		article, nav {
-			background: gold;
+			background: white;
 		}
 
         ul {
@@ -64,7 +69,32 @@
             background-color: transparent;
             color: white;
         }
+
+        button {
+            background-color: #0065A4;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
 	</style>
+    <script>
+        function join() {
+            document.getElementById('change').innerHTML = '<iframe src="Joiners.html" width="100%" height="100%"></iframe>';
+        }
+        function leave() {
+            document.getElementById('change').innerHTML = '<iframe src="Leavers.html" width="100%" height="100%"></iframe>';
+        }
+        function move() {
+            document.getElementById('change').innerHTML = '<iframe src="Movers.html" width="100%" height="100%"></iframe>';
+        }
+        function blank() {
+            document.getElementById('change').innerHTML = ' ';
+        }
+
+    </script>
 </head>
 <body>
 	<header id="pageHeader">
@@ -81,19 +111,20 @@
 				Welcome <?php echo $_SESSION['username']; ?>
 			</div>
 			<div>
-				<a href="">Logout</a> 
+				<a href="">Logout</a>
 			</div>
 		</div>
 	</header>
 	<article id="mainArticle">
-        Article
+        <div id="change"></div>
+
     </article>
 	<nav id="mainNav">
-        <ul>
-            <li><a class="active" href="#home">Admin</a></li>
-            <li><a href="Joiners.html">Joiner</a></li>
-            <li><a href="Leavers.html">Leaver</a></li>
-            <li><a href="Movers.html">Mover</a></li>
-        </ul>
+
+            <button name="admin" onclick="blank()">Admin</button>
+            <button name="joiners" onclick="join()">Joiner</button>
+            <button name="leavers" onclick="leave()">Leaver</button>
+            <button name="movers" onclick="move()">Mover</button>
 	</nav>
 </body>
+</html>
