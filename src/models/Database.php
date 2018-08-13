@@ -3,7 +3,6 @@
 use Zend\Db;
 
 require 'vendor/autoload.php';
-require 'Application.php';
 
 class Database {
 

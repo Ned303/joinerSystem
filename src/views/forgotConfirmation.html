@@ -10,7 +10,7 @@
 
         }
 
-        input[type=text], input[type=password], input[type=email] {
+        input[type=text], input[type=password] {
             width: 100%;
             padding: 12px 20px;
             margin: 8px 0;
@@ -66,14 +66,9 @@
 
 <!--Following load the for-->
 <div class="container">
-    <form action="../index.php" method="POST">
-            <h4><b>Email</b></h4>
-            <input type="email" placeholder="Email" name="email" required>
-
-            <button type="submit" name="forgot">Submit</button>
-    </form>
     <form action="../index.php" method="POST" style="border:0px;">
-            <button type="submit" name="cancel">Cancel</button>
+        <p>You will receive an email with a link to reset your password</p>
+        <button type="submit" name="cancel">Back to login</button>
     </form>
 </div>
 </body>

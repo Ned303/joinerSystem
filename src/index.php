@@ -1,5 +1,8 @@
 <?php
 	require 'models/User.php';
+	require 'models/Application.php';
+	require 'models/Database.php';
+	require 'models/Email.php';
 
 	echo file_get_contents('views/login.html');
 
@@ -11,6 +14,7 @@
 
 	if(isset($_POST["forgot"]))
 	{
-		echo "DONT FORGET YOUR PASSWORD AGAIN!!!!";
+		$objUser = new User();
+		$objUser->forgotPass($_POST["email"]);
 	}
 ?>

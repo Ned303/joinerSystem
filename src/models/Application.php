@@ -17,4 +17,10 @@ class Application {
 
 		return $objConfig['database'];
 	}
+
+	public function getLocalUrl(){
+		$objConfig = Factory::fromFiles(glob('config.ini'));
+
+		return $objConfig['local']['url'];
+	}
 }
