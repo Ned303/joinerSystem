@@ -44,20 +44,12 @@ and open the template in the editor.
 				margin: auto;
 			
 			}
-			
-			.main {
-				
-			}
-			
+            
 			.MainForm {
 				border: 3px solid #f1f1f1;
-				width: 30%;
+				width: 50%;
 				margin: auto;
 				border-radius: 25px;
-			}
-			
-			.choiceForm {
-				padding-left: 27%;
 			}
 
 			input[type=text], input[type=date] {
@@ -129,7 +121,6 @@ and open the template in the editor.
 
 			.form-wrapper div{
 				font-size: 20px;
-				float: left;
 				clear: both;
 				border: 3px solid #f1f1f1;
 				width: 140px;
@@ -149,13 +140,10 @@ and open the template in the editor.
     <body>
         <!-- following div loads the image-->
         <div class="load-logo">
-			<a href="http://a24group.com/" title="a24 Group">
-				<img src="https://static1.squarespace.com/static/5149c458e4b0199d103d7411/t/5b682fb10e2e72aae8b968c9/1533554610971/logo.PNG?format=500w" alt="A24 Group">
-			</a>
+            <img src="logo.PNG" alt="A24 Group">
         </div>
 		<br>
-		<br>
-        <form action="" class="choiceForm">
+        <form action="">
 			<div class="form-wrapper">
 				<div class="radio-choice">
 					<span>Joiner </span>
@@ -173,49 +161,56 @@ and open the template in the editor.
 				</div>
 			</div>
 		</form>
+        <br>
 		<!--Following load the for-->
 		<div id = "content" class = "main">
-        <form action="index.php" method="POST" class="MainForm">
-		<h1>Leavers</h1>
-          <table class="container">
-			<tr>
-				<td><h4><b>First name:</b></h4>
-					<input type="text" name="First name" required>
-				</td>
-			</tr>
-			<tr>		
-				<td><h4><b>Surname:</b></h4>
-					<input type="text" name="Surname" required>
-				</td>
-			</tr>
-			<tr>
-				<td><h4><b>Job Title</b></h4>
-					<select>
-						<option value="job1">Junior Developer</option>
-						<option value="job2">job2</option>
-						<option value="job3">job3</option>
-						<option value="job4">job4</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td><h4><b>Department</b></h4>
-					<input type="text" name="Department" required>
-				</td>
-			</tr>
-			<tr>
-				<td><h4><b>Line Manager</b></h4>
-					<input type="text" name="Line Manager" required>
-				<td>
-			</tr>
-			<tr>
-				<td><h4><b>Leave Date</b></h4>
-					<input type="date" name="Start Date">
-				</td>
-			</tr>
-			<tr>
-				<td><button type="submit">Submit</button></td>
-          </div>
-        </form>
+            <form action="index.php" method="POST" class="MainForm">
+                <table class="container">
+                    <tr>
+                        <td><h4><b>First name:</b></h4>
+                            <input type="text" name="First name" required>
+                        </td>
+                    </tr>
+                    <tr>		
+                        <td><h4><b>Surname:</b></h4>
+                            <input type="text" name="Surname" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h4><b>Job Title</b></h4>
+                            <select>
+                                <option value="job1">Junior Developer</option>
+                                <option value="job2">job2</option>
+                                <option value="job3">job3</option>
+                                <option value="job4">job4</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h4><b>Department</b></h4>
+                            <input type="text" name="Department" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h4><b>Line Manager</b></h4>
+                            <input type="text" name="Line Manager" required>
+                        <td>
+                    </tr>
+                    <tr>
+                        <td><h4><b>Leave Date</b></h4>
+                            <input type="date" name="Start Date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><h4><b>Comments</b></h4>
+                            <textarea style='resize: none;' name='comments' rows='10' cols='86%' ></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit">Submit</button></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </body>
 </html>
