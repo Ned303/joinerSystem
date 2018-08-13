@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
     <title>Login</title>
@@ -53,7 +53,6 @@
 		    margin-left: auto;
 			margin-right: auto;
         }
-
     </style>
 </head>
 <body>
@@ -63,7 +62,6 @@
 </a>
 <br>
 <br>
-
 <!--Following load the for-->
 <div class="container">
     <form action="../index.php" method="POST">
@@ -72,8 +70,9 @@
             <br>
              <h4><b>Confirm Password</b></h4>
             <input type="password" placeholder="Confirm Password" name="confirmPassword" required>
+            <input type="hidden" name="ref" value="<?php echo $_GET['ref']; ?>">
 
-            <button type="submit" name="forgot">Submit</button>
+            <button type="submit" name="newPass">Submit</button>
     </form>
     <form action="../index.php" method="POST" style="border:0px;">
             <button type="submit" name="cancel">Cancel</button>

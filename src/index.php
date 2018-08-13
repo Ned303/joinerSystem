@@ -17,4 +17,10 @@
 		$objUser = new User();
 		$objUser->forgotPass($_POST["email"]);
 	}
+
+	if(isset($_POST["newPass"]))
+	{
+		$objUser = new User();
+		$objUser->changePass($_POST["ref"], hash('sha512',$_POST["confirmPassword"]));
+	}
 ?>
