@@ -14,29 +14,87 @@
 				"header header header"
 				"nav article article";
 			grid-template-rows: 206px 1fr;
-			grid-template-columns: 300px 1fr 15%;
+			grid-template-columns: 200px 1fr 15%;
 			height: 100vh;
 			margin: 0;
 			font-family: Arial, Helvetica, sans-serif;
 		}
-		#pageHeader {
+        
+        #pageHeader {
 			grid-area: header;
 		}
-		#pageFooter {
+        
+        #pageFooter {
 			grid-area: footer;
 		}
 		#mainArticle {
 			grid-area: article;
 		}
-		#mainNav {
+        
+        #mainNav {
 			grid-area: nav;
 			background:#0065A4;
 			color:white;
 		}
 		article, nav {
-			background: gold;
+			background: white;
 		}
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: #0065A4;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+
+        li a.active {
+            background-color: white;
+            color: black;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+        }
+
+        div a {
+            background-color: transparent;
+            color: white;
+        }
+
+        button {
+            background-color: #0065A4;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
 	</style>
+    <script>
+        function join() {
+            document.getElementById('change').innerHTML = '<iframe src="Joiners.html" width="100%" height="100%"></iframe>';
+        }
+        function leave() {
+            document.getElementById('change').innerHTML = '<iframe src="Leavers.html" width="100%" height="100%"></iframe>';
+        }
+        function move() {
+            document.getElementById('change').innerHTML = '<iframe src="Movers.html" width="100%" height="100%"></iframe>';
+        }
+        function blank() {
+            document.getElementById('change').innerHTML = ' ';
+        }
+
+    </script>
 </head>
 <body>
 	<header id="pageHeader">
@@ -53,17 +111,20 @@
 				Welcome <?php echo $_SESSION['username']; ?>
 			</div>
 			<div>
-				Logout
+				<a href="">Logout</a>
 			</div>
 		</div>
 	</header>
-	<article id="mainArticle">Article</article>
+	<article id="mainArticle">
+        <div id="change"></div>
+
+    </article>
 	<nav id="mainNav">
-		<center>
-		<p>Admin</p>
-		<p>Joiner</p>
-		<p>Leaver</p>
-		<p>Mover</p>
-		</center>
+
+            <button name="admin" onclick="blank()">Admin</button>
+            <button name="joiners" onclick="join()">Joiner</button>
+            <button name="leavers" onclick="leave()">Leaver</button>
+            <button name="movers" onclick="move()">Mover</button>
 	</nav>
 </body>
+</html>

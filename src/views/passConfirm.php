@@ -61,9 +61,11 @@
                 document.getElementsByName('confirmPassword').values()) {
                 document.getElementById('message').style.color = 'green';
                 document.getElementById('message').innerHTML = 'Password matching';
+                document.getElementById("newPass").disabled = true;
             } else {
                 document.getElementById('message').style.color = 'red';
                 document.getElementById('message').innerHTML = 'Password not matching';
+                document.getElementById("newPass").disabled = false;
             }
         }
     </script>
@@ -85,7 +87,7 @@
             <input type="password" placeholder="Confirm Password" name="confirmPassword" onkeypress='checkPass()'; required>
             <input type="hidden" name="ref" value="<?php echo $_GET['ref']; ?>">
 
-            <button type="submit" name="newPass">Submit</button>
+            <button type="submit" name="newPass" disabled>Submit</button>
     </form>
     <div> <p id="message"></p></div>
     <form action="../index.php" method="POST" style="border:0px;">
