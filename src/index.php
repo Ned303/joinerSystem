@@ -4,6 +4,8 @@
 	require 'models/Database.php';
 	require 'models/Email.php';
 
+	session_abort();
+
 	echo file_get_contents('views/login.html');
 
 	if(isset($_POST["login"]))

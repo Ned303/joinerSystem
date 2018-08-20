@@ -12,6 +12,7 @@ class User {
 		if($dbResult == null || $dbResult['userPassword'] != $password) {
 			echo '<center><p style="color:red">Login details are incorrect</p></center>';
 		} else {
+			session_start();
 			$_SESSION['username'] = $username;
 			header("Location:views/main.php");
 		}

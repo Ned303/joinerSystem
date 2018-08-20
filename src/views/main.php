@@ -13,8 +13,8 @@
 			grid-template-areas:
 				"header header header"
 				"nav article article";
-			grid-template-rows: 206px 1fr;
-			grid-template-columns: 200px 1fr 15%;
+			grid-template-rows: 75px 1fr;
+			grid-template-columns: 160px 1fr 15%;
 			height: 100vh;
 			margin: 0;
 			font-family: Arial, Helvetica, sans-serif;
@@ -22,6 +22,7 @@
         
         #pageHeader {
 			grid-area: header;
+            display:flex;
 		}
         
         #pageFooter {
@@ -91,27 +92,26 @@
             document.getElementById('change').innerHTML = '<iframe src="Movers.html" width="100%" height="100%"></iframe>';
         }
         function blank() {
-            document.getElementById('change').innerHTML = ' ';
+            document.getElementById('change').innerHTML = '<iframe src="Admin.html" width="100%" height="100%"></iframe>';
         }
 
     </script>
 </head>
 <body>
 	<header id="pageHeader">
-		<center>
-			<div>
-				<!-- following div loads the image-->
-				<a href="http://a24group.com/" title="a24 Group">
-					<img src="https://static1.squarespace.com/static/5149c458e4b0199d103d7411/t/5b682fb10e2e72aae8b968c9/1533554610971/logo.PNG?format=500w" alt="A24 Group">
-				</a>
-			</div>
-		</center>
-		<div style="text-align:right;background:#0065A4;color:white;width:100%;">
+        <div style="width:50%; background-color: #0065A4; float:left;">
+            <!-- following div loads the image-->
+            <a href="http://a24group.com/" title="a24 Group">
+                <img style="width:160px;" src="https://static1.squarespace.com/static/5149c458e4b0199d103d7411/t/5b682fb10e2e72aae8b968c9/1533554610971/logo.PNG?format=500w" alt="A24 Group">
+            </a>
+        </div>
+		<div style="text-align:right;background:#0065A4;color:white;width:100%;padding-right: 10px;">
 			<div>
 				Welcome <?php echo $_SESSION['username']; ?>
 			</div>
+            <br>
 			<div>
-				<a href="">Logout</a>
+				<a href="/joinerSystem/index.php">Logout</a>
 			</div>
 		</div>
 	</header>
