@@ -9,30 +9,6 @@ and open the template in the editor.
         <title>Joiner System</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script language="Javascript">
-		
-			function change() {
-				document.getElementById("content").innerHTML='<object type="text/html" data="Movers.html" ></object>';
-			}
-			
-			function changeMove() {
-			
-				window.location.href = "Movers.html";
-			
-			}
-			
-			function changeLeave() {
-			
-				window.location.href = "Leavers.html";
-			
-			}
-			
-			function changeJoin() {
-			
-				window.location.href = "Joiners.html";
-			
-			}
-		</script>
         <style>
 			body {font-family: Arial, Helvetica, sans-serif;}
 			
@@ -148,10 +124,14 @@ and open the template in the editor.
                     <tr>
                         <td><h4><b>Job Title</b></h4>
                             <select>
-                                <option value="job1">Junior Developer</option>
-                                <option value="job2">job2</option>
-                                <option value="job3">job3</option>
-                                <option value="job4">job4</option>
+                                <?php
+                                    $objJobs = new JobRoles();
+                                    $arrJobRoles = $objJobs->getJobRoles(1);
+
+                                    foreach ($arrJobRoles as $role) {
+                                        echo '<option value="' . $role . '">' . $role . '</option>';
+                                    }
+                                ?>
                             </select>
                         </td>
                     </tr>

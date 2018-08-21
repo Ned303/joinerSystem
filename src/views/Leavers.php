@@ -9,30 +9,6 @@ and open the template in the editor.
         <title>Joiner System</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script language="Javascript">
-		
-			function change() {
-				document.getElementById("content").innerHTML='<object type="text/html" data="Movers.html" ></object>';
-			}
-			
-			function changeMove() {
-			
-				window.location.href = "Movers.html";
-			
-			}
-			
-			function changeLeave() {
-			
-				window.location.href = "Leavers.html";
-			
-			}
-			
-			function changeJoin() {
-			
-				window.location.href = "Joiners.html";
-			
-			}
-		</script>
         <style>
 			body {font-family: Arial, Helvetica, sans-serif;}
 			

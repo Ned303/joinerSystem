@@ -83,16 +83,16 @@
 	</style>
     <script>
         function join() {
-            document.getElementById('change').innerHTML = '<iframe src="Joiners.html" width="100%" height="100%"></iframe>';
+            document.getElementById('change').innerHTML = '<iframe src="Joiners.php" width="100%" height="100%"></iframe>';
         }
         function leave() {
-            document.getElementById('change').innerHTML = '<iframe src="Leavers.html" width="100%" height="100%"></iframe>';
+            document.getElementById('change').innerHTML = '<iframe src="Leavers.php" width="100%" height="100%"></iframe>';
         }
         function move() {
-            document.getElementById('change').innerHTML = '<iframe src="Movers.html" width="100%" height="100%"></iframe>';
+            document.getElementById('change').innerHTML = '<iframe src="Movers.php" width="100%" height="100%"></iframe>';
         }
-        function blank() {
-            document.getElementById('change').innerHTML = '<iframe src="Admin.html" width="100%" height="100%"></iframe>';
+        function admin() {
+            document.getElementById('change').innerHTML = '<iframe src="Admin.php" width="100%" height="100%"></iframe>';
         }
 
     </script>
@@ -106,25 +106,26 @@
             </a>
         </div>
 		<div style="text-align:right;background:#0065A4;color:white;width:100%;padding-right: 10px;">
-			<div>
-				Welcome <?php echo $_SESSION['username']; ?>
+			<div style="padding-top:10px;">
+				Welcome <?php echo $_SESSION['name']; ?>
 			</div>
-            <br>
-			<div>
+			<div style="padding-top:10px;">
 				<a href="/joinerSystem/index.php">Logout</a>
 			</div>
 		</div>
 	</header>
 	<article id="mainArticle">
-        <div id="change"></div>
-
+        <div id="change">
+            <iframe srcdoc="<p style='padding-top: 20px;text-align: center;'>Click on the left menu item to submit a new form</p>" width="100%" height="100%"></iframe>
+        </div>
     </article>
 	<nav id="mainNav">
-
-            <button name="admin" onclick="blank()">Admin</button>
-            <button name="joiners" onclick="join()">Joiner</button>
-            <button name="leavers" onclick="leave()">Leaver</button>
-            <button name="movers" onclick="move()">Mover</button>
+        <?php if($_SESSION['admin']){ ?>
+            <button name="admin" onclick="admin()">Admin</button>
+        <?php } ?>
+        <button name="joiners" onclick="join()">Joiner</button>
+        <button name="leavers" onclick="leave()">Leaver</button>
+        <button name="movers" onclick="move()">Mover</button>
 	</nav>
 </body>
 </html>

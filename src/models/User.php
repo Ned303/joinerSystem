@@ -3,7 +3,7 @@ require 'vendor/autoload.php';
 
 class User {
 	public function login($username, $password){
-		$sql = "SELECT userUsername, userPassword FROM users";
+		$sql = "SELECT userUsername, userPassword, userName, userSurname, isAdmin, companyID FROM users";
 
 		$objDB = new Database();
 		$result = $objDB->execute($sql);
@@ -13,7 +13,9 @@ class User {
 			echo '<center><p style="color:red">Login details are incorrect</p></center>';
 		} else {
 			session_start();
-			$_SESSION['username'] = $username;
+			$_SESSION['name'] = $dbResult['userName'];
+			$_SESSION['admin'] = $dbResult['isAdmin'];
+			$_SESSION['company'] = $dbResult['companyID'];
 			header("Location:views/main.php");
 		}
 	}
