@@ -1,4 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<?php
+    include "../models/JobRoles.php";
+    session_start();
+
+    $objJobs = new JobRoles();
+    $arrJobRoles = $objJobs->getJobRoles($_SESSION['company']);
+?>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -125,9 +131,6 @@ and open the template in the editor.
                         <td><h4><b>Job Title</b></h4>
                             <select>
                                 <?php
-                                    $objJobs = new JobRoles();
-                                    $arrJobRoles = $objJobs->getJobRoles(1);
-
                                     foreach ($arrJobRoles as $role) {
                                         echo '<option value="' . $role . '">' . $role . '</option>';
                                     }

@@ -1,7 +1,5 @@
 <?php
 
-use Zend\Db;
-
 require 'vendor/autoload.php';
 
 class Database {

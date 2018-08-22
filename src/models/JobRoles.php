@@ -1,26 +1,19 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'vendor/autoload.php';
 
 class JobRoles{
 	public function getJobRoles( $companyID ) {
-        /*$sql = "SELECT userUsername, userPassword, userName, userSurname, isAdmin, companyID FROM users";
+        $sql = "SELECT jobID, jobName FROM jobroles WHERE companyId = $companyID";
 
         $objDB = new Database();
         $result = $objDB->execute($sql);
         $dbResult = $result->current();
 
-        if($dbResult == null || $dbResult['userPassword'] != $password) {
-            echo '<center><p style="color:red">Login details are incorrect</p></center>';
+        if($dbResult == null) {
+            throw Exception("There are no jobroles set up for your company with id $companyID");
         } else {
-            session_start();
-            $_SESSION['name'] = $dbResult['userName'];
-            $_SESSION['admin'] = $dbResult['isAdmin'];
-            $_SESSION['company'] = $dbResult['companyID'];
-            header("Location:views/main.php");
-        }*/
+            echo $dbResult;
+            die();
+        }
 
         return array('SomeJob','MyRandomJob','CommonJob','Jobless');
 	}

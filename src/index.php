@@ -1,7 +1,8 @@
 <?php
+require "vendor/autoload.php";
 	require 'models/User.php';
 	require 'models/Application.php';
-	require 'models/Database.php';
+	require_once 'models/Database.php';
 	require 'models/Email.php';
 
 	session_abort();
