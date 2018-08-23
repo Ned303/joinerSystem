@@ -2,7 +2,7 @@
 
 class User {
 	public function login($username, $password){
-		$sql = "SELECT userUsername, userPassword, userName, userSurname, isAdmin, companyID FROM users";
+		$sql = "SELECT userUsername, userPassword, userEmail, userName, userSurname, isAdmin, companyID FROM users";
 
 		$objDB = new Database();
 		$result = $objDB->execute($sql);
@@ -15,6 +15,7 @@ class User {
 			$_SESSION['name'] = $dbResult['userName'];
 			$_SESSION['admin'] = $dbResult['isAdmin'];
 			$_SESSION['company'] = $dbResult['companyID'];
+			$_SESSION['email'] = $dbResult['userEmail'];
 			header("Location:views/main.php");
 		}
 	}
@@ -36,12 +37,12 @@ class User {
 			
 				<p>Click on the following <a href=\"$sLink\">link</a> to reset your password, or copy and paste the following link in your browser:</p>
 				<p><a href = \"$sLink\">$sLink</a></p>
-				<p>The Joiner system Team</p>
+				<p>Kind Regards<br>The Joiner system Team</p>
 				</center>
 			</html>";
 
 			$objEmail = new Email();
-			$objEmail->sendNonDepartmentEmail($sSubject, $sBody, $email);
+			$objEmail->sendEmail($sSubject, $sBody, $email);
 
 			header("Location:views/forgotConfirmation.html");
 		}else{

@@ -22,4 +22,22 @@
 		$objUser = new User();
 		$objUser->changePass($_POST["ref"], hash('sha512',$_POST["confirmPassword"]));
 	}
+
+    if(isset($_POST["joiner"]))
+    {
+        $objEmp = new Employee();
+        $objEmp->newJoiner($_POST["FirstName"], $_POST["Surname"], $_POST["JobTitle"], $_POST["Department"], $_POST["LineManager"], $_POST["StartDate"], $_POST["comments"]);
+    }
+
+    if(isset($_POST["mover"]))
+    {
+        $objEmp = new Employee();
+        $objEmp->newMover();
+    }
+
+    if(isset($_POST["leaver"]))
+    {
+        $objEmp = new Employee();
+        $objEmp->newLeaver();
+    }
 ?>
