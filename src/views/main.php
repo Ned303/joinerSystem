@@ -24,10 +24,7 @@
 			grid-area: header;
             display:flex;
 		}
-        
-        #pageFooter {
-			grid-area: footer;
-		}
+
 		#mainArticle {
 			grid-area: article;
 		}
