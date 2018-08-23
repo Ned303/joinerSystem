@@ -2,8 +2,6 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
-
 class Email {
     public function sendEmail( $sSubject, $sBody, $sDepartment ) {
     	//Get the email details from the config

@@ -1,11 +1,7 @@
 <?php
-require "vendor/autoload.php";
-	require 'models/User.php';
-	require 'models/Application.php';
-	require_once 'models/Database.php';
-	require 'models/Email.php';
+    require 'vendor/autoload.php';
 
-	session_abort();
+    session_abort();
 
 	echo file_get_contents('views/login.html');
 

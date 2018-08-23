@@ -1,7 +1,5 @@
 <?php
 
-require 'vendor/autoload.php';
-
 class Database {
 
 	public function execute($sql){

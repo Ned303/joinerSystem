@@ -1,6 +1,6 @@
 <?php
-    include "../models/JobRoles.php";
     session_start();
+    require '../vendor/autoload.php';
 
     $objJobs = new JobRoles();
     $arrJobRoles = $objJobs->getJobRoles($_SESSION['company']);
