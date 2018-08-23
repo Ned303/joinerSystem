@@ -1,4 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<?php
+session_start();
+require '../vendor/autoload.php';
+
+$objJobs = new JobRoles();
+$arrJobRoles = $objJobs->getJobRoles($_SESSION['company']);
+?>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -130,10 +136,11 @@ and open the template in the editor.
                     <tr>
                         <td><h4><b>Job Title</b></h4>
                             <select>
-                                <option value="job1">Junior Developer</option>
-                                <option value="job2">job2</option>
-                                <option value="job3">job3</option>
-                                <option value="job4">job4</option>
+                                <?php
+                                foreach ($arrJobRoles as $role) {
+                                    echo '<option value="' . $role . '">' . $role . '</option>';
+                                }
+                                ?>
                             </select>
                         </td>
                     </tr>
