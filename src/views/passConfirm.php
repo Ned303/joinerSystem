@@ -33,6 +33,10 @@
             opacity: 0.8;
         }
 
+        .buttons:disabled {
+            opacity: 0;
+        }
+
         .container {
             padding:16px;
             border-radius: 25px;
@@ -45,8 +49,8 @@
 
         img {
             display: block;
-		    margin-left: auto;
-			margin-right: auto;
+            margin-left: auto;
+            margin-right: auto;
         }
     </style>
 
@@ -56,13 +60,12 @@
             let b = document.getElementById('confirmPassword').value;
 
             if ( a === b) {
-                document.getElementById('message').style.color = 'green';
                 document.getElementById('message').innerHTML = '';
-                document.getElementsByName('newPass').disabled = false;
+                document.getElementById('newPass').innerHTML = "<button type\"submit\" class=\"buttons\" id=\"newPass\">Submit</button>";
             } else {
                 document.getElementById('message').style.color = 'red';
                 document.getElementById('message').innerHTML = 'Password not matching';
-                document.getElementsByName('newPass').disabled = true;
+                document.getElementById('newPass').innerHTML = "";
             }
         }
     </script>
@@ -77,19 +80,19 @@
 <!--Following load the for-->
 <div class="container">
     <form action="../index.php" method="POST">
-            <h4><b>New Password</b></h4>
-            <input type="password" placeholder="New Password" id="newPassword" required>
-            <br>
-             <h4><b>Confirm Password</b></h4>
-            <input type="password" placeholder="Confirm Password" id="confirmPassword"; onkeypress='checkPass()'required>
-            <input type="hidden" name="ref" value="<?php echo $_GET['ref']; ?>">
-
-            <input type="submit" class="buttons" name="newPass" value="Submit">
+        <h4><b>New Password</b></h4>
+        <input type="password" placeholder="New Password" id="newPassword" required>
+        <br>
+        <h4><b>Confirm Password</b></h4>
+        <input type="password" placeholder="Confirm Password" id="confirmPassword"; onkeyup='checkPass()'required>
+        <input type="hidden" name="ref" value="<?php echo $_GET['ref']; ?>">
+        <div id="newPass"></div>
     </form>
     <div> <p id="message"></p></div>
     <form action="../index.php" method="POST" style="border:0px;">
-            <input type="button" class="buttons"  name="cancel" value="Cancel">
+        <input type="button" class="buttons"  name="cancel" value="Cancel">
     </form>
 </div>
 </body>
 </html>
+
