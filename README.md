@@ -13,7 +13,7 @@ Run in the `joinerSystem/src` directory:
 `sudo apt-get install ant`
 
 ### Create property file
-Create a new file in the joinerSystem root directory, you can name this <yourname>.properties. Copy the content of the following into the file and fill in the blank properties.
+Create a new file in the joinerSystem root directory, you can name this {yourname}.properties. Copy the content of the following into the file and fill in the blank properties.
 ```
 build.dir=.build
 dist.dir=dist
