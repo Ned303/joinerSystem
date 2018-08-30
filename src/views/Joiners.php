@@ -110,7 +110,7 @@ and open the template in the editor.
                 width: 100%;
             }
 
-            #loader{
+            #loader-section{
                 background: grey;
                 position: absolute;
                 top: 0;
@@ -121,13 +121,36 @@ and open the template in the editor.
                 opacity: 0.5;
                 display: none;
                 align-items: center;
+                border-radius: 25px;
+            }
+
+            .loader {
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid #0065A4;
+                width: 120px;
+                height: 120px;
+                -webkit-animation: spin 2s linear infinite; /* Safari */
+                animation: spin 2s linear infinite;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            /* Safari */
+            @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
             }
 
 		</style>
         <script>
             function showLoader() {
-                /*display: flex;*/
-                document.getElementById('loader').style.display = "flex";
+                document.getElementById('loader-section').style.display = "flex";
             }
         </script>
     </head>
@@ -135,16 +158,16 @@ and open the template in the editor.
         <br>
 		<!--Following load the for-->
 		<div id = "content" class = "main">
-            <form action="../index.php" method="POST" class="MainForm" onsubmit="showLoader();/*console.log('asd');*/">
+            <form action="../index.php" method="POST" class="MainForm" onsubmit="showLoader();">
                 <table class="container">
                     <tr>
                         <td><h4><b>First name:</b></h4>
-                            <input type="text" name="FirstName" value="name" required>
+                            <input type="text" name="FirstName" required>
                         </td>
                     </tr>
                     <tr>		
                         <td><h4><b>Surname:</b></h4>
-                            <input type="text" name="Surname" value="surname" required>
+                            <input type="text" name="Surname" required>
                         </td>
                     </tr>
                     <tr>
@@ -160,17 +183,17 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td><h4><b>Department</b></h4>
-                            <input type="text" name="Department" value="dep" required>
+                            <input type="text" name="Department" required>
                         </td>
                     </tr>
                     <tr>
                         <td><h4><b>Line Manager</b></h4>
-                            <input type="text" name="LineManager" value="manager" required>
+                            <input type="text" name="LineManager" required>
                         <td>
                     </tr>
                     <tr>
                         <td><h4><b>Start Date</b></h4>
-                            <input type="date" name="StartDate">
+                            <input type="date" name="StartDate" required>
                         </td>
                     </tr>
                     <tr>
@@ -180,10 +203,9 @@ and open the template in the editor.
                     </tr>
                     <tr><td><button type="submit" name="joiner">Submit</button></td></tr>
                 </table>
-                <div id="loader">
-                    <img src="../images/loader.gif"/>
+                <div id="loader-section">
+                    <div class="loader"></div>
                 </div>
             </form>
-        </div>
     </body>
 </html>

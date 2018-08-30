@@ -38,6 +38,6 @@
     if(isset($_POST["leaver"]))
     {
         $objEmp = new Employee();
-        $objEmp->newLeaver($_POST["FirstName"], $_POST["Surname"], $_POST["JobTitle"], $_POST["Department"], $_POST["LineManager"], $_POST["StartDate"], $_POST["comments"]);
+        $objEmp->newLeaver($_POST["FirstName"], $_POST["Surname"], $_POST["JobTitle"], $_POST["Department"], $_POST["LineManager"], $_POST["LeaveDate"], $_POST["comments"]);
     }
 ?>

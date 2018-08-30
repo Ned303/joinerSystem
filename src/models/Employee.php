@@ -159,7 +159,7 @@ class Employee{
     }
 
     public function sendUserEmail($from, $name, $surname, $jobtitle, $department, $manager, $date, $comments){
-        $userEmailSubject = "New Joiner Submitted";
+        $userEmailSubject = "New " . ucfirst($from) . " Submitted";
 
         switch($from){
             case 'joiner':
