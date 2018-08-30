@@ -19,7 +19,7 @@
             box-sizing: border-box;
         }
 
-        button {
+        .buttons {
             background-color: #0065A4;
             color: white;
             padding: 14px 20px;
@@ -29,7 +29,7 @@
             width: 100%;
         }
 
-        button:hover {
+        .buttons:hover {
             opacity: 0.8;
         }
 
@@ -42,11 +42,6 @@
             border-radius: 25px;
         }
 
-        .header-container {
-            width: 100%;
-            height: 100px;
-            background-color: #0065A4;
-        }
 
         img {
             display: block;
@@ -57,15 +52,17 @@
 
     <script>
         function checkPass() {
-            if (document.getElementsByName('newPassword').values() ==
-                document.getElementsByName('confirmPassword').values()) {
+            let a = document.getElementById('newPassword').value;
+            let b = document.getElementById('confirmPassword').value;
+
+            if ( a === b) {
                 document.getElementById('message').style.color = 'green';
-                document.getElementById('message').innerHTML = 'Password matching';
-                document.getElementById("newPass").disabled = true;
+                document.getElementById('message').innerHTML = '';
+                document.getElementsByName('newPass').disabled = false;
             } else {
                 document.getElementById('message').style.color = 'red';
                 document.getElementById('message').innerHTML = 'Password not matching';
-                document.getElementById("newPass").disabled = false;
+                document.getElementsByName('newPass').disabled = true;
             }
         }
     </script>
@@ -81,17 +78,17 @@
 <div class="container">
     <form action="../index.php" method="POST">
             <h4><b>New Password</b></h4>
-            <input type="password" placeholder="New Password" name="newPassword" required>
+            <input type="password" placeholder="New Password" id="newPassword" required>
             <br>
              <h4><b>Confirm Password</b></h4>
-            <input type="password" placeholder="Confirm Password" name="confirmPassword" onkeypress='checkPass()'; required>
+            <input type="password" placeholder="Confirm Password" id="confirmPassword"; onkeypress='checkPass()'required>
             <input type="hidden" name="ref" value="<?php echo $_GET['ref']; ?>">
 
-            <button type="submit" name="newPass" disabled>Submit</button>
+            <input type="submit" class="buttons" name="newPass" value="Submit">
     </form>
     <div> <p id="message"></p></div>
     <form action="../index.php" method="POST" style="border:0px;">
-            <button type="submit" name="cancel">Cancel</button>
+            <input type="button" class="buttons"  name="cancel" value="Cancel">
     </form>
 </div>
 </body>
