@@ -131,15 +131,7 @@ and open the template in the editor.
 						<option value="curJob4">job4</option>
 					</select>
 				</td>
-				<td><h4><b>New Job Title</b></h4>
-					<select>
-						<option value="newJob1">Junior Developer</option>
-						<option value="newJob2">job2</option>
-						<option value="newJob3">job3</option>
-						<option value="newJob4">job4</option>
-					</select>
-				</td>
-			</tr>
+            </tr>
 			<tr>
 				<td><h4><b>Current Department</b></h4>
 					<select>
@@ -149,6 +141,8 @@ and open the template in the editor.
 						<option value="curDep4">job4</option>
 					</select>
 				</td>
+            </tr>
+            <tr>
 				<td><h4><b>New Department</b></h4>
 					<select>
 						<option value="newDep1">IT</option>
