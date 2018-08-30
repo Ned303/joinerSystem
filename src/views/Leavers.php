@@ -1,9 +1,9 @@
 <?php
-session_start();
-require '../vendor/autoload.php';
+    session_start();
+    require '../vendor/autoload.php';
 
-$objJobs = new JobRoles();
-$arrJobRoles = $objJobs->getJobRoles($_SESSION['company']);
+    $objJobs = new JobRoles();
+    $arrJobRoles = $objJobs->getJobRoles($_SESSION['company']);
 ?>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -121,11 +121,11 @@ and open the template in the editor.
         <br>
 		<!--Following load the for-->
 		<div id = "content" class = "main">
-            <form action="index.php" method="POST" class="MainForm">
+            <form action="../index.php" method="POST" class="MainForm">
                 <table class="container">
                     <tr>
                         <td><h4><b>First name:</b></h4>
-                            <input type="text" name="First name" required>
+                            <input type="text" name="FirstName" required>
                         </td>
                     </tr>
                     <tr>		
@@ -135,10 +135,10 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td><h4><b>Job Title</b></h4>
-                            <select>
+                            <select name="JobTitle">
                                 <?php
-                                foreach ($arrJobRoles as $role) {
-                                    echo '<option value="' . $role . '">' . $role . '</option>';
+                                foreach ($arrJobRoles as $key => $role) {
+                                    echo '<option value="' . $key . '">' . $role . '</option>';
                                 }
                                 ?>
                             </select>
@@ -151,12 +151,12 @@ and open the template in the editor.
                     </tr>
                     <tr>
                         <td><h4><b>Line Manager</b></h4>
-                            <input type="text" name="Line Manager" required>
+                            <input type="text" name="LineManager" required>
                         <td>
                     </tr>
                     <tr>
                         <td><h4><b>Leave Date</b></h4>
-                            <input type="date" name="Start Date">
+                            <input type="date" name="StartDate">
                         </td>
                     </tr>
                     <tr>
@@ -165,7 +165,7 @@ and open the template in the editor.
                         </td>
                     </tr>
                     <tr>
-                        <td><button type="submit">Submit</button></td>
+                        <td><button type="submit" name="leaver">Submit</button></td>
                     </tr>
                 </table>
             </form>
