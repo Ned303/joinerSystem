@@ -32,6 +32,7 @@ and open the template in the editor.
 				width: 50%;
 				margin: auto;
 				border-radius: 25px;
+                position:relative;
 			}
 
 			input[type=text], input[type=date] {
@@ -109,13 +110,32 @@ and open the template in the editor.
                 width: 100%;
             }
 
+            #loader{
+                background: grey;
+                position: absolute;
+                top: 0;
+                z-index: 1;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                opacity: 0.5;
+                display: none;
+                align-items: center;
+            }
+
 		</style>
+        <script>
+            function showLoader() {
+                /*display: flex;*/
+                document.getElementById('loader').style.display = "flex";
+            }
+        </script>
     </head>
     <body>
         <br>
 		<!--Following load the for-->
 		<div id = "content" class = "main">
-            <form action="../index.php" method="POST" class="MainForm">
+            <form action="../index.php" method="POST" class="MainForm" onsubmit="showLoader();/*console.log('asd');*/">
                 <table class="container">
                     <tr>
                         <td><h4><b>First name:</b></h4>
@@ -160,6 +180,9 @@ and open the template in the editor.
                     </tr>
                     <tr><td><button type="submit" name="joiner">Submit</button></td></tr>
                 </table>
+                <div id="loader">
+                    <img src="../images/loader.gif"/>
+                </div>
             </form>
         </div>
     </body>
