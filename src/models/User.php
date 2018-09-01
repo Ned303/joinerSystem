@@ -4,7 +4,7 @@
 	{
 		public function login($username, $password)
 		{
-			$sql = "SELECT userUsername, userPassword, userEmail, userName, userSurname, isAdmin, companyID FROM users";
+			$sql = "SELECT userUsername, userPassword, userEmail, userName, userSurname, isAdmin, companyID FROM users WHERE userUsername = '$username'";
 
 			$objDB = new Database();
 			$result = $objDB->execute($sql);
@@ -27,11 +27,11 @@
 			$objApp = new Application();
 			$sLocalUrl = $objApp->getLocalUrl();
 
-			$bIsUser = $this->checkUserExist($email);
+			$passwordKey = $this->getPasswordKey($email);
 
-			if ($bIsUser) {
+			if ($passwordKey) {
 				$sSubject = "Joiner System Password Reset";
-				$sLink = "$sLocalUrl" . "/views/passConfirm.php?ref=" . hash('sha512', $email);
+				$sLink = "$sLocalUrl" . "/views/passConfirm.php?ref=" . $passwordKey;
 
 				$sBody = "<html>
 				<center>
@@ -53,9 +53,9 @@
 			}
 		}
 
-		public function checkUserExist($sEmail)
+		public function getPasswordKey($sEmail)
 		{
-			$sql = "SELECT usersID FROM users WHERE userEmail = '" . $sEmail . "'";
+			$sql = "SELECT passwordKey FROM users WHERE userEmail = '" . $sEmail . "'";
 
 			$objDB = new Database();
 			$result = $objDB->execute($sql);
@@ -64,29 +64,25 @@
 			if ($dbResult == null) {
 				return false;
 			} else {
-				return true;
+				return $dbResult["passwordKey"];
 			}
 		}
 
 		public function changePass($reference, $newPassword)
 		{
-			$sql = "SELECT usersID, userEmail FROM users";
+			$sql = "SELECT usersID, userEmail FROM users WHERE passwordKey = \"$reference\"";
 			$objDB = new Database();
 			$result = $objDB->execute($sql);
 
-			$userId = null;
+			$entry = $result->current();
 
-			while ($userId == null) {
-				$entry = $result->current();
-				if (hash('sha512', $entry['userEmail']) == $reference) {
-					$userId = $entry['usersID'];
-				} else {
-					$result->next();
-				}
+			if ($entry == null) {
+				header("Location:views/error.html");
+			} else {
+				$newKey = hash('sha512', $newPassword);
+				$sql = "UPDATE users SET userPassword = '" . $newPassword . "', passwordKey = '" . $newKey . "' WHERE usersID = " . $entry["usersID"];
+				$objDB = new Database();
+				$objDB->execute($sql);
 			}
-
-			$sql = "UPDATE users SET userPassword = '" . $newPassword . "' WHERE usersID = " . $userId;
-			$objDB = new Database();
-			$objDB->execute($sql);
 		}
 	}

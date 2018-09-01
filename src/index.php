@@ -27,7 +27,7 @@
 
 	if (isset($_POST["mover"])) {
 		$objEmp = new Employee();
-		$objEmp->newMover();
+		$objEmp->newMover($_POST["firstName"], $_POST["surname"], $_POST["currentDepartment"], $_POST["currentJobTitle"], $_POST["currentManager"], $_POST["newDepartment"], $_POST["newJobTitle"], $_POST["newManager"], $_POST["MoveDate"], $_POST["comments"]);
 	}
 
 	if (isset($_POST["leaver"])) {

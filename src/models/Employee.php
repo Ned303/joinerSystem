@@ -157,7 +157,7 @@
 			header("Location:views/Leavers.php");
 		}
 
-		public function newMover()
+		public function newMover($name, $surname, $curDepartment, $curJobTitle, $curManager, $newDepartment, $newJobTitle, $newManager, $moveDate, $comments)
 		{
 			echo "A new mover was submitted!!";
 		}

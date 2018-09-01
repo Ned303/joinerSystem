@@ -155,10 +155,35 @@
             }
         }
 
+        #error {
+            color:red;
+            display:none;
+        }
+
     </style>
     <script>
         function showLoader() {
             document.getElementById('loader-section').style.display = "flex";
+        }
+
+        function checkSame() {
+            var current = document.getElementById('currentJobTitle');
+            var currentJobTitle = current.options[current.selectedIndex].value;
+            var newJT = document.getElementById('newJobTitle');
+            var newJobTitle = newJT.options[newJT.selectedIndex].value;
+
+            console.log(currentJobTitle);
+            console.log(newJobTitle);
+
+            if (currentJobTitle === newJobTitle) {
+                document.getElementById('error').innerHTML = 'The new job title cannot be the same as the current one';
+                document.getElementById('error').style.display = 'flex';
+                document.getElementById('mover').style.display = 'none';
+            } else {
+                document.getElementById('error').innerHTML = '';
+                document.getElementById('error').style.display = 'none';
+                document.getElementById('mover').style.display = 'inline';
+            }
         }
     </script>
 </head>
@@ -166,7 +191,7 @@
 <br>
 <!--Following load the for-->
 <div id="content" class="main">
-    <form action="index.php" method="POST" class="MainForm">
+    <form action="../index.php" method="POST" class="MainForm" onsubmit="showLoader();">
         <table class="container">
             <tr>
                 <td><b>First name</b>
@@ -185,7 +210,8 @@
             </tr>
             <tr>
                 <td><b>Current Job Title</b>
-                    <select name="currentJobTitle">
+                    <select name="currentJobTitle" id="currentJobTitle">
+                        <option disabled selected value="">Please select value</option>
 						<?php
 							foreach ($arrJobRoles as $key => $role) {
 								echo '<option value="' . $key . '">' . $role . '</option>';
@@ -205,8 +231,9 @@
                 </td>
             </tr>
             <tr>
-                <td><b>New Job Title</b>
-                    <select name="newJobTitle">
+                <td><b>New Job Title</b> <a id="error"></a>
+                    <select name="newJobTitle" id="newJobTitle" onchange="checkSame();">
+                        <option disabled selected value="">Please select value</option>
 						<?php
 							foreach ($arrJobRoles as $key => $role) {
 								echo '<option value="' . $key . '">' . $role . '</option>';
@@ -232,10 +259,13 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <button type="submit">Submit</button>
+                    <button type="submit" id="mover" name="mover">Submit</button>
                 </td>
             </tr>
         </table>
+        <div id="loader-section">
+            <div class="loader"></div>
+        </div>
     </form>
 </div>
 </body>

@@ -187,6 +187,7 @@ and open the template in the editor.
             <tr>
                 <td><b>Job Title</b>
                     <select name="JobTitle">
+                        <option disabled selected value="">Please select value</option>
 						<?php
 							foreach ($arrJobRoles as $key => $role) {
 								echo '<option value="' . $key . '">' . $role . '</option>';
