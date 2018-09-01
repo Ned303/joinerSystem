@@ -58,6 +58,11 @@
         }
 
     </style>
+    <script>
+        function backToLogin(){
+            window.top.location.href = "http://localhost/joinerSystem/index.php";
+        }
+    </script>
 </head>
 <body>
 <!-- following div loads the image-->
@@ -70,9 +75,9 @@
 
 <!--Following load the for-->
 <div class="container">
-    <form action="../index.php" method="POST" style="border:0px;">
+    <form action="../index.php" method="POST" style="border:0px;" onsubmit="backToLogin();">
         <p>An error has occurred, if this keeps happening, please contact the dev department</p>
-        <button type="submit" name="cancel">Back to login</button>
+        <button type="submit" name="error">Back to Login</button>
     </form>
 </div>
 </body>
