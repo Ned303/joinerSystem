@@ -2,11 +2,9 @@
 <html>
 <head>
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
+        body {font-family: Arial, Helvetica, sans-serif;}
 
-        .text {
+        .text{
             width: 100%;
         }
 
@@ -21,26 +19,25 @@
             margin: auto;
         }
 
-        .container {
+        .adminContainer {
             border-collapse: collapse;
-            width: 100%;
+            margin: auto ;
         }
 
-        .container td, #container th {
+
+        .adminContainer td, #adminContainer th {
             border: 1px solid #ddd;
             padding: 8px;
-            text-align: center;
+            text-align: left;
         }
 
-        .container tr:nth-child(even) {
+        .adminContainer tr:nth-child(even){
             background-color: #f2f2f2;
         }
 
-        .container tr:hover {
-            background-color: #ddd;
-        }
+        .adminContainer tr:hover {background-color: #ddd;}
 
-        .container th {
+        .adminContainer th {
             padding-top: 12px;
             padding-bottom: 12px;
             background-color: rgba(0, 101, 164, 0.65);
@@ -54,24 +51,31 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id="content" class="main">
+<div id = "content" class = "main">
     <br>
     <br>
-    <table class="container" width="auto" border="1">
+    <table class="adminContainer" width="auto" border="1">
+        <col width="17%">
+        <col width="17%">
+        <col width="17%">
+        <col width="17%">
+        <col width="30%">
         <tr>
             <th>Username</th>
             <th>Name</th>
             <th>Surname</th>
             <th>Email</th>
-            <th>Edit</th>
+            <th style="width: auto">Edit</th>
         </tr>
         <tr>
             <td>NED</td>
             <td>Franco</td>
             <td>de la Rosa</td>
             <td>@gmail.com</td>
-            <td>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit</button>
+            <td style="width: auto">
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#edit">Edit</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#passReset">Password Reset</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#remove">Remove account</button>
             </td>
         </tr>
         <tr>
@@ -79,55 +83,77 @@
             <td>Gino</td>
             <td>Lander</td>
             <td>@ymail.com</td>
-            <td>
+            <td style="width: auto">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#passReset">Password Reset</button>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#remove">Remove account</button>
             </td>
         </tr>
     </table>
 </div>
 
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal fade" id="edit" role="dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #0065A4;">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title" style="color: white">Edit User</h4>
-            </div>
-            <form action="index.php" method="POST">
-                <div class="modal-body">
-                    <div id="edit_modal">
-                        Username: <br>
-                        <input type="text" id="username" class="text"><br><br>
-
-
-                        Name:<br>
-                        <input type="text" id="name" class="text"><br><br>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #0065A4;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color: white">Edit User</h4>
+                </div>
+                <form action="index.php" method="POST">
+                    <div class="modal-body">
+                        <div id="edit_modal">
+                            Username: <br>
+                            <input type="text" id="username" class="text"><br><br>
 
 
-                        Surname:<br>
-                        <input type="text" id="surname" class="text"><br><br>
+                            Name:<br>
+                            <input type="text" id="name" class="text"><br><br>
 
 
-                        E-mail:<br>
-                        <input type="text" id="email" class="text"><br><br>
+                            Surname:<br>
+                            <input type="text" id="surname" class="text"><br><br>
 
 
-                        Admin:<br>
+                            E-mail:<br>
+                            <input type="text" id="email" class="text"><br><br>
 
-                        <input type="checkbox"><br><br>
 
+                            Admin:<br>
+
+                            <input type="checkbox"><br><br>
+
+                        </div>
                     </div>
-                </div>
 
-                <div class="modal-footer">
-                    <input type="submit" class="btn btn-default" data-dismiss="modal" value="Submit">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </form>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-default" data-dismiss="modal" value="Submit"> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="modal fade" id="remove" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #0065A4;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title" style="color: white">Edit User</h4>
+                </div>
+                <form action="index.php" method="POST">
+                    <div class="modal-body">
+                       Are you sure you want to remove account?
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-default" data-dismiss="modal" value="Yes"> <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
