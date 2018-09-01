@@ -1,13 +1,15 @@
 <?php
 
-session_start();
+	session_start();
 
-class Employee{
-	public function newJoiner($name, $surname, $jobTitle, $department, $manager, $date, $comments){
+	class Employee
+	{
+		public function newJoiner($name, $surname, $jobTitle, $department, $manager, $date, $comments)
+		{
 
-	    $allAccess= array();
+			$allAccess = array();
 
-	    $sql = "SELECT jobName, accesslinks.accessID, accessName, departmentName, departmentEmail FROM jobroles
+			$sql = "SELECT jobName, accesslinks.accessID, accessName, departmentName, departmentEmail FROM jobroles
         INNER JOIN JobRoles_AccessLinkss
             ON JobRoles_AccessLinkss.jobID = jobroles.jobID
         INNER JOIN accesslinks
@@ -16,45 +18,45 @@ class Employee{
             ON departments.departmentID = accesslinks.departmentID
         WHERE jobroles.jobID = $jobTitle";
 
-        $objDB = new Database();
-        $result = $objDB->execute($sql);
-        $dbResult = $result->current();
+			$objDB = new Database();
+			$result = $objDB->execute($sql);
+			$dbResult = $result->current();
 
-        while(!array_key_exists($dbResult['accessID'],$allAccess)){
-            $dbResult = $result->current();
-            $allAccess[$dbResult['accessID']] = array(
-                'jobName' => $dbResult['jobName'],
-                'accessName' => $dbResult['accessName'],
-                'departmentName' => $dbResult['departmentName'],
-                'departmentEmail' => $dbResult['departmentEmail'],
-            );
+			while (!array_key_exists($dbResult['accessID'], $allAccess)) {
+				$dbResult = $result->current();
+				$allAccess[$dbResult['accessID']] = array(
+					'jobName' => $dbResult['jobName'],
+					'accessName' => $dbResult['accessName'],
+					'departmentName' => $dbResult['departmentName'],
+					'departmentEmail' => $dbResult['departmentEmail'],
+				);
 
-            $result->next();
-            $dbResult = $result->current();
-        }
+				$result->next();
+				$dbResult = $result->current();
+			}
 
-        $this->sendUserEmail('joiner', $name, $surname, reset($allAccess)['jobName'], $department, $manager, $date, $comments);
+			$this->sendUserEmail('joiner', $name, $surname, reset($allAccess)['jobName'], $department, $manager, $date, $comments);
 
-        $arrDepartment= array();
+			$arrDepartment = array();
 
-        foreach($allAccess as $access){
-            $arrDepartment[$access['departmentName']] = array(
-                'departmentEmail' => $access['departmentEmail'],
-                'accessToGive' => array()
-            );
-        }
+			foreach ($allAccess as $access) {
+				$arrDepartment[$access['departmentName']] = array(
+					'departmentEmail' => $access['departmentEmail'],
+					'accessToGive' => array()
+				);
+			}
 
-        foreach($allAccess as $access){
-            foreach ($arrDepartment as $key => $department){
-                if($access['departmentName'] == $key){
-                    $arrDepartment[$key]['accessToGive'][] = $access['accessName'];
-                }
-            }
-        }
+			foreach ($allAccess as $access) {
+				foreach ($arrDepartment as $key => $department) {
+					if ($access['departmentName'] == $key) {
+						$arrDepartment[$key]['accessToGive'][] = $access['accessName'];
+					}
+				}
+			}
 
-        foreach($arrDepartment as $department){
-            $EmailSubject = "New Joiner Submitted";
-            $EmailBody = "<html>
+			foreach ($arrDepartment as $department) {
+				$EmailSubject = "New Joiner Submitted";
+				$EmailBody = "<html>
 				<h1>Joiner System</h1>
 				<p>You have received this email because there has been a joiner request</p>
 				<p>
@@ -70,19 +72,20 @@ class Employee{
 				    <b>The following actions need to be taken by your department:<b><br>" . implode('<br>', $department['accessToGive']) . "</p>
 				<p>Kind Regards<br>The Joiner system Team</p>
 			</html>";
-            $EMailRecipient = $department['departmentEmail'];
+				$EMailRecipient = $department['departmentEmail'];
 
-            $objEmail = new Email();
-            $objEmail->sendEmail($EmailSubject, $EmailBody, $EMailRecipient);
-        }
+				$objEmail = new Email();
+				#$objEmail->sendEmail($EmailSubject, $EmailBody, $EMailRecipient);
+			}
 
-        header("Location:views/Joiners.php");
-    }
+			header("Location:views/Joiners.php");
+		}
 
-    public function newLeaver($name, $surname, $jobTitle, $department, $manager, $date, $comments){
-        $allAccess= array();
+		public function newLeaver($name, $surname, $jobTitle, $department, $manager, $date, $comments)
+		{
+			$allAccess = array();
 
-        $sql = "SELECT jobName, accesslinks.accessID, accessName, departmentName, departmentEmail FROM jobroles
+			$sql = "SELECT jobName, accesslinks.accessID, accessName, departmentName, departmentEmail FROM jobroles
         INNER JOIN JobRoles_AccessLinkss
             ON JobRoles_AccessLinkss.jobID = jobroles.jobID
         INNER JOIN accesslinks
@@ -91,45 +94,45 @@ class Employee{
             ON departments.departmentID = accesslinks.departmentID
         WHERE jobroles.jobID = $jobTitle";
 
-        $objDB = new Database();
-        $result = $objDB->execute($sql);
-        $dbResult = $result->current();
+			$objDB = new Database();
+			$result = $objDB->execute($sql);
+			$dbResult = $result->current();
 
-        while(!array_key_exists($dbResult['accessID'],$allAccess)){
-            $dbResult = $result->current();
-            $allAccess[$dbResult['accessID']] = array(
-                'jobName' => $dbResult['jobName'],
-                'accessName' => $dbResult['accessName'],
-                'departmentName' => $dbResult['departmentName'],
-                'departmentEmail' => $dbResult['departmentEmail'],
-            );
+			while (!array_key_exists($dbResult['accessID'], $allAccess)) {
+				$dbResult = $result->current();
+				$allAccess[$dbResult['accessID']] = array(
+					'jobName' => $dbResult['jobName'],
+					'accessName' => $dbResult['accessName'],
+					'departmentName' => $dbResult['departmentName'],
+					'departmentEmail' => $dbResult['departmentEmail'],
+				);
 
-            $result->next();
-            $dbResult = $result->current();
-        }
+				$result->next();
+				$dbResult = $result->current();
+			}
 
-        $this->sendUserEmail('leaver', $name, $surname, reset($allAccess)['jobName'], $department, $manager, $date, $comments);
+			$this->sendUserEmail('leaver', $name, $surname, reset($allAccess)['jobName'], $department, $manager, $date, $comments);
 
-        $arrDepartment= array();
+			$arrDepartment = array();
 
-        foreach($allAccess as $access){
-            $arrDepartment[$access['departmentName']] = array(
-                'departmentEmail' => $access['departmentEmail'],
-                'accessToGive' => array()
-            );
-        }
+			foreach ($allAccess as $access) {
+				$arrDepartment[$access['departmentName']] = array(
+					'departmentEmail' => $access['departmentEmail'],
+					'accessToGive' => array()
+				);
+			}
 
-        foreach($allAccess as $access){
-            foreach ($arrDepartment as $key => $department){
-                if($access['departmentName'] == $key){
-                    $arrDepartment[$key]['accessToGive'][] = $access['accessName'];
-                }
-            }
-        }
+			foreach ($allAccess as $access) {
+				foreach ($arrDepartment as $key => $department) {
+					if ($access['departmentName'] == $key) {
+						$arrDepartment[$key]['accessToGive'][] = $access['accessName'];
+					}
+				}
+			}
 
-        foreach($arrDepartment as $department){
-            $EmailSubject = "New Leaver Submitted";
-            $EmailBody = "<html>
+			foreach ($arrDepartment as $department) {
+				$EmailSubject = "New Leaver Submitted";
+				$EmailBody = "<html>
 				<h1>Joiner System</h1>
 				<p>You have received this email because there has been a leaver request</p>
 				<p>
@@ -145,37 +148,39 @@ class Employee{
 				    <b>The following actions need to be taken by your department:<b><br>" . implode('<br>', $department['accessToGive']) . "</p>
 				<p>Kind Regards<br>The Joiner system Team</p>
 			</html>";
-            $EMailRecipient = $department['departmentEmail'];
+				$EMailRecipient = $department['departmentEmail'];
 
-            $objEmail = new Email();
-            $objEmail->sendEmail($EmailSubject, $EmailBody, $EMailRecipient);
-        }
+				$objEmail = new Email();
+				#$objEmail->sendEmail($EmailSubject, $EmailBody, $EMailRecipient);
+			}
 
-        header("Location:views/Leavers.php");
-    }
+			header("Location:views/Leavers.php");
+		}
 
-    public function newMover(){
-        echo "A new mover was submitted!!";
-    }
+		public function newMover()
+		{
+			echo "A new mover was submitted!!";
+		}
 
-    public function sendUserEmail($from, $name, $surname, $jobtitle, $department, $manager, $date, $comments){
-        $userEmailSubject = "New " . ucfirst($from) . " Submitted";
+		public function sendUserEmail($from, $name, $surname, $jobtitle, $department, $manager, $date, $comments)
+		{
+			$userEmailSubject = "New " . ucfirst($from) . " Submitted";
 
-        switch($from){
-            case 'joiner':
-                $dateType = 'Start';
-                break;
-            case 'mover':
-                $dateType = 'Move';
-                break;
-            case 'leaver':
-                $dateType = 'Leave';
-                break;
-            default:
-                throw Exception("The method that this was called from is not set up");
-        }
+			switch ($from) {
+				case 'joiner':
+					$dateType = 'Start';
+					break;
+				case 'mover':
+					$dateType = 'Move';
+					break;
+				case 'leaver':
+					$dateType = 'Leave';
+					break;
+				default:
+					throw Exception("The method that this was called from is not set up");
+			}
 
-        $userEmailBody = "<html>
+			$userEmailBody = "<html>
 				<h1>Joiner System</h1>
 				<p>You have received this email because you have requested a $from with the following details:</p>			
 				<p>
@@ -189,10 +194,11 @@ class Employee{
 				</p>
 				<p>Kind Regards<br>The Joiner system Team</p>
 			</html>";
-        $userEMailRecipient = $_SESSION['email'];
+			$userEMailRecipient = $_SESSION['email'];
 
-        $objEmail = new Email();
-        $objEmail->sendEmail($userEmailSubject, $userEmailBody, $userEMailRecipient);
-    }
-}
+			$objEmail = new Email();
+			$objEmail->sendEmail($userEmailSubject, $userEmailBody, $userEMailRecipient);
+		}
+	}
+
 ?>

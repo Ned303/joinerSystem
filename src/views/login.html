@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {font-family: Arial, Helvetica, sans-serif;}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
         form {
             border: 3px solid #f1f1f1;
             width: 30%;
@@ -49,35 +52,36 @@
 
         img {
             display: block;
-		    margin-left: auto;
-			margin-right: auto;
+            margin-left: auto;
+            margin-right: auto;
         }
 
     </style>
 </head>
 <body>
 <div>
-<!-- following div loads the image-->
+    <!-- following div loads the image-->
 
-    <img src="https://static1.squarespace.com/static/5149c458e4b0199d103d7411/t/5b682fb10e2e72aae8b968c9/1533554610971/logo.PNG?format=500w" alt="A24 Group">
+    <img src="https://static1.squarespace.com/static/5149c458e4b0199d103d7411/t/5b682fb10e2e72aae8b968c9/1533554610971/logo.PNG?format=500w"
+         alt="A24 Group">
 
-<br>
-<br>
+    <br>
+    <br>
 
-<!--Following load the for-->
-<form action="index.php" method="POST">
-    <div class="container">
-        <h4><b>Username</b></h4>
-        <input type="text" placeholder="Username" name="username" required>
+    <!--Following load the for-->
+    <form action="index.php" method="POST">
+        <div class="container">
+            <h4><b>Username</b></h4>
+            <input type="text" placeholder="Username" name="username" required>
 
-        <h4><b>Password</b></h4>
-        <input type="password" placeholder="Password" name="password" required>
+            <h4><b>Password</b></h4>
+            <input type="password" placeholder="Password" name="password" required>
 
-        <button type="submit" name="login">Login</button>
-    </div>
-    <div class="container" style="background-color:#f1f1f1">
-        <div>Forgot <a href="views/forgotPass.html">password?</a></div>
-    </div>
-</form>
+            <button type="submit" name="login">Login</button>
+        </div>
+        <div class="container" style="background-color:#f1f1f1">
+            <div>Forgot <a href="views/forgotPass.html">password?</a></div>
+        </div>
+    </form>
 </body>
 </html>

@@ -2,9 +2,11 @@
 <html>
 <head>
     <style>
-        body {font-family: Arial, Helvetica, sans-serif;}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-        .text{
+        .text {
             width: 100%;
         }
 
@@ -24,18 +26,19 @@
             width: 100%;
         }
 
-
         .container td, #container th {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: center;
         }
 
-        .container tr:nth-child(even){
+        .container tr:nth-child(even) {
             background-color: #f2f2f2;
         }
 
-        .container tr:hover {background-color: #ddd;}
+        .container tr:hover {
+            background-color: #ddd;
+        }
 
         .container th {
             padding-top: 12px;
@@ -51,7 +54,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div id = "content" class = "main">
+<div id="content" class="main">
     <br>
     <br>
     <table class="container" width="auto" border="1">
@@ -67,14 +70,18 @@
             <td>Franco</td>
             <td>de la Rosa</td>
             <td>@gmail.com</td>
-            <td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit</button></td>
+            <td>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit</button>
+            </td>
         </tr>
         <tr>
             <td>G</td>
             <td>Gino</td>
             <td>Lander</td>
             <td>@ymail.com</td>
-            <td><button type="button"  class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit</button></td>
+            <td>
+                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit</button>
+            </td>
         </tr>
     </table>
 </div>
@@ -115,7 +122,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-default" data-dismiss="modal" value="Submit"> <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-default" data-dismiss="modal" value="Submit">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </form>
         </div>

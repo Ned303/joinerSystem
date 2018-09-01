@@ -1,17 +1,19 @@
 <?php
 
-class Database {
+	class Database
+	{
 
-	public function execute($sql){
-		$objApplication = new Application();
-		$arrConDetails = $objApplication->getDBDetails();
+		public function execute($sql)
+		{
+			$objApplication = new Application();
+			$arrConDetails = $objApplication->getDBDetails();
 
-		$objAdapter = new Zend\Db\Adapter\Adapter($arrConDetails);
+			$objAdapter = new Zend\Db\Adapter\Adapter($arrConDetails);
 
-		$statement = $objAdapter->query($sql);
+			$statement = $objAdapter->query($sql);
 
-		$result = $statement->execute();
+			$result = $statement->execute();
 
-		return $result;
+			return $result;
+		}
 	}
-}

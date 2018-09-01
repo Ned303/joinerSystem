@@ -1,38 +1,42 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
-class Email {
-	public function sendEmail( $sSubject, $sBody, $sRecipient ) {
-		//Get the email details from the config
-		$objApplication = new Application();
-		$arrEmailDetails = $objApplication->getEmailConf();
+	use PHPMailer\PHPMailer\PHPMailer;
+	use PHPMailer\PHPMailer\Exception;
 
-		try {
-			$mail = new PHPMailer(true);
-			//Server settings
-			$mail->SMTPDebug = 0;
-			$mail->isSMTP();
-			$mail->Host = $arrEmailDetails["host"];
-			$mail->SMTPAuth = true;
-			$mail->Username = $arrEmailDetails["username"];
-			$mail->Password = $arrEmailDetails["password"];
-			$mail->SMTPSecure = 'tls';
-			$mail->Port = 587;
+	class Email
+	{
+		public function sendEmail($sSubject, $sBody, $sRecipient)
+		{
+			//Get the email details from the config
+			$objApplication = new Application();
+			$arrEmailDetails = $objApplication->getEmailConf();
 
-			//Recipients
-			$mail->setFrom($arrEmailDetails["from"]["address"], $arrEmailDetails["from"]["name"]);
-			$mail->addAddress($sRecipient, $sRecipient);
+			try {
+				$mail = new PHPMailer(true);
+				//Server settings
+				$mail->SMTPDebug = 0;
+				$mail->isSMTP();
+				$mail->Host = $arrEmailDetails["host"];
+				$mail->SMTPAuth = true;
+				$mail->Username = $arrEmailDetails["username"];
+				$mail->Password = $arrEmailDetails["password"];
+				$mail->SMTPSecure = 'tls';
+				$mail->Port = 587;
 
-			//Content
-			$mail->isHTML(true);
-			$mail->Subject = $sSubject;
-			$mail->Body = $sBody;
+				//Recipients
+				$mail->setFrom($arrEmailDetails["from"]["address"], $arrEmailDetails["from"]["name"]);
+				$mail->addAddress($sRecipient, $sRecipient);
 
-			$mail->send();
-		} catch (phpmailerException $e) {
-			echo "An error occurred: " . $e->errorMessage();;
+				//Content
+				$mail->isHTML(true);
+				$mail->Subject = $sSubject;
+				$mail->Body = $sBody;
+
+				$mail->send();
+			} catch (phpmailerException $e) {
+				echo "An error occurred: " . $e->errorMessage();;
+			}
 		}
 	}
-}
+
 ?>
