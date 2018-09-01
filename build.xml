@@ -25,7 +25,7 @@
             Deploying filtered Joiner System files to ${deploy.dir}
         </echo>
         <sequential>
-            <copy todir="${deploy.dir}/${deploy.distribution.dir}" verbose="${deploy.verbose}" granularity="0" preservelastmodified="true" overwrite="true" >
+            <copy failonerror="true" todir="${deploy.dir}/${deploy.distribution.dir}" verbose="${deploy.verbose}" preservelastmodified="true" overwrite="true" >
                 <fileset dir="${src.dir}" >
                     <include name="**/" />
                 </fileset>

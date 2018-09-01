@@ -33,8 +33,9 @@
 				$mail->Body = $sBody;
 
 				$mail->send();
-			} catch (phpmailerException $e) {
-				echo "An error occurred: " . $e->errorMessage();;
+			} catch (Exception $e) {
+				header("Location:views/error.html");
+				die();
 			}
 		}
 	}

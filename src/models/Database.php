@@ -5,15 +5,21 @@
 
 		public function execute($sql)
 		{
-			$objApplication = new Application();
-			$arrConDetails = $objApplication->getDBDetails();
+			try{
+				$objApplication = new Application();
 
-			$objAdapter = new Zend\Db\Adapter\Adapter($arrConDetails);
+				$arrConDetails = $objApplication->getDBDetails();
 
-			$statement = $objAdapter->query($sql);
+				$objAdapter = new Zend\Db\Adapter\Adapter($arrConDetails);
 
-			$result = $statement->execute();
+				$statement = $objAdapter->query($sql);
 
-			return $result;
+				$result = $statement->execute();
+
+				return $result;
+			} catch (Exception $e) {
+				header("Location:views/error.html");
+				die();
+			}
 		}
 	}

@@ -191,6 +191,7 @@
 <br>
 <!--Following load the for-->
 <div id="content" class="main">
+    <center><h1>Mover</h1></center>
     <form action="../index.php" method="POST" class="MainForm" onsubmit="showLoader();">
         <table class="container">
             <tr>
