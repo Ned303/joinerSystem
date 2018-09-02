@@ -55,11 +55,11 @@
     <br>
     <br>
     <table class="adminContainer" width="auto" border="1">
-        <col width="17%">
-        <col width="17%">
-        <col width="17%">
-        <col width="17%">
-        <col width="30%">
+        <col width="20%">
+        <col width="20%">
+        <col width="20%">
+        <col width="20%">
+        <col width="200">
         <tr>
             <th>Username</th>
             <th>Name</th>
@@ -73,9 +73,9 @@
             <td>de la Rosa</td>
             <td>@gmail.com</td>
             <td style="width: auto">
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#edit">Edit</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#passReset">Password Reset</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#remove">Remove account</button>
+                <input type="image" src="../images/edit.PNG" alt="Submit" width="38" height="38" data-toggle="modal" data-target="#edit">
+                <input type="image" src="../images/changePass.png" alt="Submit" width="38" height="38" data-toggle="modal" data-target="#passReset">
+                <input type="image" src="../images/remove.png" alt="Submit" width="38" height="38" data-toggle="modal" data-target="#remove">
             </td>
         </tr>
         <tr>
@@ -84,9 +84,9 @@
             <td>Lander</td>
             <td>@ymail.com</td>
             <td style="width: auto">
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Edit</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#passReset">Password Reset</button>
-                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#remove">Remove account</button>
+                <input type="image" src="../images/edit.PNG" alt="Submit" width="38" height="38" data-toggle="modal" data-target="#edit">
+                <input type="image" src="../images/changePass.png" alt="Submit" width="38" height="38" data-toggle="modal" data-target="#passReset">
+                <input type="image" src="../images/remove.png" alt="Submit" width="38" height="38" data-toggle="modal" data-target="#remove">
             </td>
         </tr>
     </table>
