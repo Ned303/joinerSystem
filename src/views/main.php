@@ -101,11 +101,7 @@
 <header id="pageHeader">
     <div style="width:50%; background-color: #0065A4; float:left;">
         <!-- following div loads the image-->
-        <a href="http://a24group.com/" title="a24 Group">
-            <img style="width:160px;"
-                 src="https://static1.squarespace.com/static/5149c458e4b0199d103d7411/t/5b682fb10e2e72aae8b968c9/1533554610971/logo.PNG?format=500w"
-                 alt="A24 Group">
-        </a>
+        <img src="../images/JoinerSystem.png" style="width: 161px;"alt="JoinerSystem">
     </div>
     <div style="text-align:right;background:#0065A4;color:white;width:100%;padding-right: 10px;">
         <div style="padding-top:10px;">

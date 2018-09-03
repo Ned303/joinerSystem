@@ -56,10 +56,109 @@ $arrUsers = $objUsers->getAllUsersForCompany($companyId);
             text-align: center;
         }
 
+        #loader-section-add, #loader-section-remove, #loader-section-edit, #loader-section-pass {
+            background: grey;
+            position: absolute;
+            top: 0;
+            z-index: 1;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0.5;
+            display: none;
+            align-items: center;
+            border-radius: 25px;
+        }
+
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #0065A4;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
     </style>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#edit').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);// Button that triggered the modal
+                var id = button.data('id');
+                var username= button.data('username');
+                var name = button.data('name');
+                var surname= button.data('surname');
+                var email= button.data('email');
+                var admin= button.data('admin');
+
+                var modal = $(this);
+                modal.find('.modal-body #username').val(username);
+                modal.find('.modal-body #userId').val(id);
+                modal.find('.modal-body #name').val(name);
+                modal.find('.modal-body #surname').val(surname);
+                modal.find('.modal-body #email').val(email);
+                modal.find('.modal-body #admin').prop('checked', admin);
+            })
+        });
+
+        $(document).ready(function(){
+            $('#passReset').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);// Button that triggered the modal
+                var email = button.data('email');
+
+                var modal = $(this);
+                modal.find('.modal-body #email').val(email);
+            })
+        });
+
+        $(document).ready(function(){
+            $('#remove').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);// Button that triggered the modal
+                var id = button.data('id');
+
+                var modal = $(this);
+                modal.find('.modal-body #id').val(id);
+            })
+        });
+
+        function showLoaderAdd() {
+            document.getElementById('loader-section-add').style.display = "flex";
+        }
+        function showLoaderRemove() {
+            document.getElementById('loader-section-remove').style.display = "flex";
+        }
+        function showLoaderEdit() {
+            document.getElementById('loader-section-edit').style.display = "flex";
+        }
+        function showLoaderPass() {
+            document.getElementById('loader-section-pass').style.display = "flex";
+        }
+    </script>
 </head>
 <body>
 <div id="content" class="main">
@@ -94,9 +193,9 @@ $arrUsers = $objUsers->getAllUsersForCompany($companyId);
                         <td>" . $user['userSurname'] . "</td>
                         <td>" . $user['userEmail'] . "</td>
                         <td style=\"width: auto; text-align: center\">
-                            <input type=\"image\" src=\"../images/edit.png\" alt=\"Submit\" width=\"38\" height=\"38\" data-toggle=\"modal\" data-target=\"#edit\"  data-id\"" . $key . "\">
-                            <input type=\"image\" src=\"../images/changePass.png\" alt=\"Submit\" width=\"38\" height=\"38\" data-toggle=\"modal\" data-target=\"#passReset\"  data-id\"" . $key . "\">
-                            <input type=\"image\" src=\"../images/remove.png\" alt=\"Submit\" width=\"38\" height=\"38\" data-toggle=\"modal\" data-target=\"#remove\" data-id\"" . $key . "\">
+                            <input type=\"image\" src=\"../images/edit.png\" alt=\"Submit\" width=\"38\" height=\"38\" data-toggle=\"modal\" data-target=\"#edit\" data-id=\"$key\" data-username=\"" . $user['userUsername'] . "\" data-name=\"" . $user['userName'] . "\" data-surname=\"" . $user['userSurname'] . "\" data-email=\"" . $user['userEmail'] . "\" data-admin=\"" . $user['isAdmin'] . "\">
+                            <input type=\"image\" src=\"../images/changePass.png\" alt=\"Submit\" width=\"38\" height=\"38\" data-toggle=\"modal\" data-target=\"#passReset\" data-email=\"" . $user['userEmail'] . "\">
+                            <input type=\"image\" src=\"../images/remove.png\" alt=\"Submit\" width=\"38\" height=\"38\" data-toggle=\"modal\" data-target=\"#remove\" data-id=\"$key\">
                         </td>
                     </tr>";
         }
@@ -106,16 +205,18 @@ $arrUsers = $objUsers->getAllUsersForCompany($companyId);
 
 <div class="modal fade" id="add" role="dialog">
     <div class="modal-dialog">
-
+        <div id="loader-section-add">
+            <div class="loader"></div>
+        </div>
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #0065A4;">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title" style="color: white">Add User</h4>
             </div>
-            <form action="../index.php" method="POST">
+            <form action="../index.php" method="POST" onsubmit="showLoaderAdd();">
                 <div class="modal-body">
-                    <div id="edit_modal">
+                    <div id="add_modal">
                         Username: <br>
                         <input type="text" id="username" class="text" name="username"><br><br>
 
@@ -152,42 +253,45 @@ $arrUsers = $objUsers->getAllUsersForCompany($companyId);
 
 <div class="modal fade" id="edit" role="dialog">
     <div class="modal-dialog">
-
+        <div id="loader-section-edit">
+            <div class="loader"></div>
+        </div>
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #0065A4;">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title" style="color: white">Edit User</h4>
             </div>
-            <form action="index.php" method="POST">
+            <form action="../index.php" method="POST" onsubmit="showLoaderEdit();">
                 <div class="modal-body">
                     <div id="edit_modal">
-                        <input type="hidden" id="userId" value="" />
+                        <input type="hidden" id="userId" name="userId" value="" />
+
                         Username: <br>
-                        <input type="text" id="username" class="text"><br><br>
+                        <input type="text" id="username" name="username" class="text"><br><br>
 
 
                         Name:<br>
-                        <input type="text" id="name" class="text"><br><br>
+                        <input type="text" id="name" name="name" class="text"><br><br>
 
 
                         Surname:<br>
-                        <input type="text" id="surname" class="text"><br><br>
+                        <input type="text" id="surname" name="surname" class="text"><br><br>
 
 
                         E-mail:<br>
-                        <input type="text" id="email" class="text"><br><br>
+                        <input type="text" id="email" name="email" class="text"><br><br>
 
 
                         Admin:<br>
 
-                        <input type="checkbox"><br><br>
+                        <input type="checkbox" id="admin" name="admin"><br><br>
 
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-default" data-dismiss="modal" value="Submit">
+                    <input type="submit" name="editUser" class="btn btn-default" value="Submit">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </form>
@@ -197,20 +301,22 @@ $arrUsers = $objUsers->getAllUsersForCompany($companyId);
 
 <div class="modal fade" id="passReset" role="dialog">
     <div class="modal-dialog">
-
+        <div id="loader-section-pass">
+            <div class="loader"></div>
+        </div>
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #0065A4;">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title" style="color: white">Password Reset</h4>
             </div>
-            <form action="index.php" method="POST">
+            <form action="../index.php" method="POST" onsubmit="showLoaderPass()">
                 <div class="modal-body">
-                    Are you sure you want to reset password
+                    <p>Are you sure you want to reset password</p>
+                    <input type="hidden" id="email" name="email" value="" />
                 </div>
-
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-default" data-dismiss="modal" value="Yes">
+                    <input type="submit" name="adminPassReset" class="btn btn-default" value="Yes">
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                 </div>
             </form>
@@ -220,19 +326,22 @@ $arrUsers = $objUsers->getAllUsersForCompany($companyId);
 
 <div class="modal fade" id="remove" role="dialog">
     <div class="modal-dialog">
-
+        <div id="loader-section-remove">
+            <div class="loader"></div>
+        </div>
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header" style="background-color: #0065A4;">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title" style="color: white">Remove Account</h4>
             </div>
-            <form action="index.php" method="POST">
+            <form action="../index.php" method="POST" onsubmit="showLoaderRemove()">
                 <div class="modal-body">
-                    Are you sure you want to remove account?
+                    <p>Are you sure you want to remove account?</p>
+                    <input type="hidden" id="id" name="id" value="" />
                 </div>
                 <div class="modal-footer">
-                    <input type="submit" class="btn btn-default" data-dismiss="modal" value="Yes">
+                    <input type="submit" class="btn btn-default" name="removeUser" value="Yes">
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                 </div>
             </form>
