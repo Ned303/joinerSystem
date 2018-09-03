@@ -135,7 +135,7 @@
 <br>
 <!--Following load the for-->
 <div class="container">
-    <form action="../index.php" method="POST" onsubmit="showLoader();>
+    <form action="../index.php" method="POST" onsubmit="showLoader();">
         <h4><b>New Password</b></h4>
         <input type="password" placeholder="New Password" id="newPassword" required>
         <br>

@@ -34,4 +34,9 @@
 		$objEmp = new Employee();
 		$objEmp->newLeaver($_POST["FirstName"], $_POST["Surname"], $_POST["JobTitle"], $_POST["Department"], $_POST["LineManager"], $_POST["LeaveDate"], $_POST["comments"]);
 	}
+
+    if (isset($_POST["addUser"])) {
+        $objUser = new User();
+        $objUser->addUser($_POST["username"],$_POST["name"],$_POST["surname"],$_POST["email"],$_POST["admin"], $_POST['company']);
+    }
 ?>

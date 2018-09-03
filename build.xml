@@ -27,9 +27,15 @@
         <sequential>
             <copy failonerror="true" todir="${deploy.dir}/${deploy.distribution.dir}" verbose="${deploy.verbose}" preservelastmodified="true" overwrite="true" >
                 <fileset dir="${src.dir}" >
-                    <include name="**/" />
+                    <include name="**/*" />
+                    <exclude name="**/*.png" />
                 </fileset>
                 <filterset refid="buildFilters" />
+            </copy>
+            <copy failonerror="true" todir="${deploy.dir}/${deploy.distribution.dir}" verbose="${deploy.verbose}" preservelastmodified="true" overwrite="true" >
+                <fileset dir="${src.dir}" >
+                    <include name="**/*.png" />
+                </fileset>
             </copy>
         </sequential>
     </target>
