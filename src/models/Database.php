@@ -1,5 +1,7 @@
 <?php
 
+	use Zend\Log\Logger;
+
 	class Database
 	{
 
@@ -18,6 +20,11 @@
 
 				return $result;
 			} catch (Exception $e) {
+				$objLog = new Log();
+				$logger = $objLog->getErrorLog();
+
+				$logger->log(Logger::ERR, 'An error occurred with the database: ' . $e->getMessage());
+
 				header("Location:views/error.html");
 				die();
 			}

@@ -2,7 +2,8 @@
   "require": {
     "phpmailer/phpmailer": "^6.0",
     "zendframework/zend-config": "^3.2.0",
-    "zendframework/zend-db":"^2.9.3"
+    "zendframework/zend-db":"^2.9.3",
+    "zendframework/zend-log":"^2.10.0"
   },
   "autoload": {
     "classmap": [

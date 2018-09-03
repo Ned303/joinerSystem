@@ -37,6 +37,8 @@
                     <include name="**/*.png" />
                 </fileset>
             </copy>
+            <touch file="${log.error.filepath}" mkdirs="true" verbose="true"/>
+            <chmod file="${log.error.filepath}" perm="777"/>
         </sequential>
     </target>
 

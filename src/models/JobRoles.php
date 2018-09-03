@@ -1,5 +1,7 @@
 <?php
 
+	use Zend\Log\Logger;
+
 	class JobRoles
 	{
 		public function getJobRoles($companyID)
@@ -13,7 +15,12 @@
 			$dbResult = $result->current();
 
 			if ($dbResult == null) {
-				throw Exception("There are no jobroles set up for your company with id $companyID");
+				$objLog = new Log();
+				$logger = $objLog->getErrorLog();
+
+				$logger->log(Logger::ERR, 'There are no jobroles with the company id [' . $companyID . ']');
+				header("Location:views/error.html");
+				die();
 			} else {
 				$dbResult = $result->current();
 

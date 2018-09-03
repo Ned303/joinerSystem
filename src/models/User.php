@@ -1,5 +1,7 @@
 <?php
 
+	use Zend\Log\Logger;
+
 	class User
 	{
 		public function login($username, $password)
@@ -81,7 +83,12 @@
 			$entry = $result->current();
 
 			if ($entry == null) {
+				$objLog = new Log();
+				$logger = $objLog->getErrorLog();
+
+				$logger->log(Logger::NOTICE, 'A user tried to do a password reset with an expired password reference key');
 				header("Location:views/error.html");
+				die();
 			} else {
 				$newKey = hash('sha512', $newPassword);
 				$sql = "UPDATE users SET userPassword = '" . $newPassword . "', passwordKey = '" . $newKey . "' WHERE usersID = " . $entry["usersID"];
@@ -100,23 +107,28 @@
             $dbResult = $result->current();
 
             if ($dbResult == null) {
-                throw Exception("There are no users set up for your company with id $companyId");
+				$objLog = new Log();
+				$logger = $objLog->getErrorLog();
+
+				$logger->log(Logger::ERR, 'There are no users with the company id [' . $companyId . ']');
+
+				header("Location:views/error.html");
+				die();
             } else {
-                $dbResult = $result->current();
+                $count = $result->count();
 
-                while (!array_key_exists($dbResult['usersID'], $allUsers)) {
-                    $dbResult = $result->current();
-                    $allUsers[$dbResult['usersID']] = array(
-                        'userUsername' => $dbResult['userUsername'],
-                        'userEmail' => $dbResult['userEmail'],
-                        'userName' => $dbResult['userName'],
-                        'userSurname' => $dbResult['userSurname'],
-                        'isAdmin' => $dbResult['isAdmin'],
-                    );
+                for ($i=0;$i<$count;$i++) {
+					$dbResult = $result->current();
+					$allUsers[$dbResult['usersID']] = array(
+						'userUsername' => $dbResult['userUsername'],
+						'userEmail' => $dbResult['userEmail'],
+						'userName' => $dbResult['userName'],
+						'userSurname' => $dbResult['userSurname'],
+						'isAdmin' => $dbResult['isAdmin'],
+					);
 
-                    $result->next();
-                    $dbResult = $result->current();
-                }
+					$result->next();
+				}
             }
 
             return $allUsers;

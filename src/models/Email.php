@@ -2,6 +2,7 @@
 
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\Exception;
+	use Zend\Log\Logger;
 
 	class Email
 	{
@@ -34,6 +35,11 @@
 
 				$mail->send();
 			} catch (Exception $e) {
+				$objLog = new Log();
+				$logger = $objLog->getErrorLog();
+
+				$logger->log(Logger::ERR, 'An error occurred with sending the email: ' . $e->errorMessage());
+
 				header("Location:views/error.html");
 				die();
 			}

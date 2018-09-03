@@ -42,6 +42,8 @@ database.database=joinerSystem
 database.hostname=localhost
 
 local.url=http://localhost/joinerSystem
+
+log.error.filepath=/var/www/joinerSystem/Logs/error.log
 ```
 
 Set the `buildprops` property in build.xml to your property file

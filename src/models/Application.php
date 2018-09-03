@@ -25,4 +25,10 @@
 
 			return $objConfig['local']['url'];
 		}
+
+		public function getLogLocation() {
+			$objConfig = Factory::fromFiles(glob('/var/www/joinerSystem/config.ini'));
+
+			return $objConfig['log']['error']['filepath'];
+		}
 	}
