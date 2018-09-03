@@ -39,4 +39,19 @@
         $objUser = new User();
         $objUser->addUser($_POST["username"],$_POST["name"],$_POST["surname"],$_POST["email"],$_POST["admin"], $_POST['company']);
     }
+
+	if (isset($_POST["editUser"])) {
+		$objUser = new User();
+		$objUser->editUser($_POST["userId"],$_POST["username"],$_POST["name"],$_POST["surname"],$_POST["email"],$_POST["admin"]);
+	}
+
+	if (isset($_POST["adminPassReset"])) {
+		$objUser = new User();
+		$objUser->forgotPass($_POST["email"],true);
+	}
+
+	if (isset($_POST["removeUser"])) {
+		$objUser = new User();
+		$objUser->removeUser($_POST["id"]);
+	}
 ?>

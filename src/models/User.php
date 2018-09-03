@@ -22,7 +22,7 @@
 			}
 		}
 
-		public function forgotPass($email)
+		public function forgotPass($email, $adminRedirect = null)
 		{
 			$objApp = new Application();
 			$sLocalUrl = $objApp->getLocalUrl();
@@ -47,7 +47,11 @@
 				$objEmail = new Email();
 				$objEmail->sendEmail($sSubject, $sBody, $email);
 
-				header("Location:views/forgotConfirmation.html");
+				if($adminRedirect){
+					header("Location:views/Admin.php");
+				} else {
+					header("Location:views/forgotConfirmation.html");
+				}
 			} else {
 				echo '<center><p style="color:red">You are not a registered user!</p></center>';
 			}
@@ -155,4 +159,34 @@
 
             header("Location:views/Admin.php");
         }
+
+        public function editUser ($userID, $username, $name, $surname, $email, $admin) {
+			if($admin == "on") {
+				$admin = 1;
+			} else {
+				$admin = 0;
+			}
+
+			$sql = "UPDATE users
+					SET userUsername = '$username',
+					userEmail = '$email',
+					userName = '$name',
+					userSurname = '$surname',
+					isAdmin = $admin
+					WHERE usersID = $userID";
+
+			$objDB = new Database();
+			$objDB->execute($sql);
+
+			header("Location:views/Admin.php");
+		}
+
+		public function removeUser($userId) {
+			$sql = "DELETE FROM users WHERE usersID = $userId";
+
+			$objDB = new Database();
+			$objDB->execute($sql);
+
+			header("Location:views/Admin.php");
+		}
 	}
