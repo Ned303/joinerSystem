@@ -158,6 +158,16 @@ $arrUsers = $objUsers->getAllUsersForCompany($companyId);
         function showLoaderPass() {
             document.getElementById('loader-section-pass').style.display = "flex";
         }
+        
+        function validateForm() {
+            var x = document.forms["add"]["email"].value;
+            var atpos = x.indexOf("@");
+            var dotpos = x.lastIndexOf(".");
+            if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+                alert("Not a valid e-mail address");
+                return false;
+            }
+        }
     </script>
 </head>
 <body>
@@ -214,7 +224,7 @@ $arrUsers = $objUsers->getAllUsersForCompany($companyId);
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title" style="color: white">Add User</h4>
             </div>
-            <form action="../index.php" method="POST" onsubmit="showLoaderAdd();">
+            <form action="../index.php" method="POST" name="add" onsubmit="return validateForm();showLoaderAdd();">
                 <div class="modal-body">
                     <div id="add_modal">
                         Username: <br>
